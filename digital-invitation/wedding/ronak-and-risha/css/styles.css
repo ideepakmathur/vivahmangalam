@@ -218,7 +218,6 @@ body {
 
 .language-gate__deities--right {
   right: 0;
-  transform: scaleX(-1);
 }
 
 .language-gate__content {
