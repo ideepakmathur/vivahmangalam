@@ -21,6 +21,55 @@
   <div id="language-gate" class="language-gate" role="dialog" aria-label="भाषा चुनें">
     <div class="garland-border garland-border--top"></div>
     <div class="language-gate__content">
+      <svg class="language-gate__ganpati" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="श्री गणेश">
+        <defs>
+          <linearGradient id="ganpati-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#C41E3A"/>
+            <stop offset="50%" style="stop-color:#800020"/>
+            <stop offset="100%" style="stop-color:#C41E3A"/>
+          </linearGradient>
+        </defs>
+        <!-- Head -->
+        <ellipse cx="100" cy="62" rx="42" ry="38" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="2"/>
+        <!-- Crown -->
+        <path d="M65 42 Q72 18 85 30 Q90 12 100 28 Q110 12 115 30 Q128 18 135 42" fill="#D4A017" stroke="#800020" stroke-width="1.5"/>
+        <circle cx="85" cy="28" r="3" fill="#FF6600"/>
+        <circle cx="100" cy="22" r="3.5" fill="#C41E3A"/>
+        <circle cx="115" cy="28" r="3" fill="#FF6600"/>
+        <!-- Eyes -->
+        <ellipse cx="82" cy="58" rx="6" ry="5" fill="#FFF8F0"/>
+        <circle cx="83" cy="58" r="3" fill="#2D1810"/>
+        <ellipse cx="118" cy="58" rx="6" ry="5" fill="#FFF8F0"/>
+        <circle cx="117" cy="58" r="3" fill="#2D1810"/>
+        <!-- Trunk -->
+        <path d="M100 72 Q96 82 92 92 Q88 102 94 108 Q100 112 104 106 Q106 98 104 88 Q102 80 100 72Z" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="1.5"/>
+        <!-- Ears -->
+        <ellipse cx="56" cy="60" rx="16" ry="22" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="2"/>
+        <ellipse cx="56" cy="60" rx="10" ry="16" fill="#F5E6CC" opacity="0.3"/>
+        <ellipse cx="144" cy="60" rx="16" ry="22" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="2"/>
+        <ellipse cx="144" cy="60" rx="10" ry="16" fill="#F5E6CC" opacity="0.3"/>
+        <!-- Body -->
+        <ellipse cx="100" cy="140" rx="38" ry="35" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="2"/>
+        <!-- Belly -->
+        <ellipse cx="100" cy="145" rx="22" ry="20" fill="#F5E6CC" opacity="0.2"/>
+        <!-- Arms -->
+        <path d="M62 125 Q48 115 42 128 Q38 136 50 138" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="1.5"/>
+        <path d="M138 125 Q152 115 158 128 Q162 136 150 138" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="1.5"/>
+        <!-- Modak in hand -->
+        <circle cx="46" cy="134" r="7" fill="#D4A017" stroke="#800020" stroke-width="1"/>
+        <!-- Lotus in hand -->
+        <path d="M154 130 Q156 122 152 118 Q150 124 154 130Z" fill="#C41E3A"/>
+        <path d="M154 130 Q158 122 160 118 Q156 124 154 130Z" fill="#C41E3A"/>
+        <path d="M154 130 Q150 120 148 118 Q152 124 154 130Z" fill="#FF6600"/>
+        <!-- Tilak -->
+        <path d="M97 48 L100 42 L103 48 Z" fill="#FF6600"/>
+        <circle cx="100" cy="50" r="2" fill="#C41E3A"/>
+        <!-- Feet -->
+        <ellipse cx="82" cy="176" rx="14" ry="6" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="1.5"/>
+        <ellipse cx="118" cy="176" rx="14" ry="6" fill="url(#ganpati-grad)" stroke="#D4A017" stroke-width="1.5"/>
+        <!-- Aura glow -->
+        <circle cx="100" cy="100" r="95" fill="none" stroke="#D4A017" stroke-width="0.5" opacity="0.3"/>
+      </svg>
       <p class="language-gate__invocation yatra-one" data-i18n="splash.invocation">|| श्री गणेशाय नमः ||</p>
       <div class="language-gate__cards">
         <button class="language-card language-card--active" id="btn-hindi" aria-label="हिंदी में देखें">

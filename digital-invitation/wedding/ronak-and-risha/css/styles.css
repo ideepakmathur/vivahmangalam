@@ -193,6 +193,53 @@ body {
   display: none;
 }
 
+.language-gate--exiting {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.language-gate__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-md);
+}
+
+.language-gate__invocation {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--color-maroon);
+  text-align: center;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+}
+
+.language-gate__ganpati {
+  width: clamp(80px, 20vw, 140px);
+  height: auto;
+  margin-bottom: var(--space-xs);
+  animation: ganpatiBreathe 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(128, 0, 32, 0.25));
+}
+
+@keyframes ganpatiBreathe {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 12px rgba(128, 0, 32, 0.25)); }
+  50% { transform: scale(1.06); filter: drop-shadow(0 6px 20px rgba(212, 160, 23, 0.4)); }
+}
+
+/* --------------------------------------------------------------------------
+   Main Content — hidden until language chosen
+   -------------------------------------------------------------------------- */
+.main-content {
+  display: none;
+}
+
+.main-content--visible {
+  display: block;
+}
+
 /* --------------------------------------------------------------------------
    Splash / Hero Section
    -------------------------------------------------------------------------- */
