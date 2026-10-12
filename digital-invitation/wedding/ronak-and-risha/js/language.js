@@ -197,15 +197,26 @@
    */
   const getLang = () => currentLang;
 
+  let initialized = false;
+
   /**
    * Initialize: read saved language from localStorage, default to 'hi'.
+   * On first init, load translations silently without firing the change event
+   * (so the language gate isn't auto-dismissed before the user clicks).
    */
-  const init = () => {
+  const init = async () => {
     const savedLang = localStorage.getItem(STORAGE_KEY) || 'hi';
-    setLanguage(savedLang);
+    try {
+      const data = await fetchTranslations(savedLang);
+      translations = data;
+      currentLang = savedLang;
+      applyTranslations(data);
+    } catch (err) {
+      console.error('[VivahLanguage] Failed to init:', err);
+    }
+    initialized = true;
   };
 
-  // Auto-init on DOMContentLoaded
   document.addEventListener('DOMContentLoaded', init);
 
   // Expose public API

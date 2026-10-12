@@ -5,16 +5,15 @@
 (function () {
   'use strict';
 
-  const LANG_KEY = 'vivah-lang-selected';
-  let currentView = 'story'; // 'story' or 'card'
+  const LANG_KEY = 'vivah-lang';
+  let currentView = 'story';
+  let gateDismissed = false;
 
   const init = () => {
-    // Initialize all modules
     if (window.VivahRibbon?.init) window.VivahRibbon.init();
     if (window.VivahTimeline?.init) window.VivahTimeline.init();
     if (window.VivahPatrika?.init) window.VivahPatrika.init();
     if (window.VivahForms?.init) window.VivahForms.init();
-    // VivahParticles exposes methods directly, no init needed
 
     setupRevealObserver();
     setupLanguageGate();
@@ -51,28 +50,31 @@
 
     if (!gate || !mainContent) return;
 
-    // Check if language already selected
     if (localStorage.getItem(LANG_KEY)) {
       showMainContent(gate, mainContent, viewToggle);
       return;
     }
 
-    // Language button handler — shared for Hindi and English
-    const selectLanguage = (lang) => {
-      localStorage.setItem(LANG_KEY, lang);
-      if (window.VivahLanguage) window.VivahLanguage.setLanguage(lang);
+    const dismissGate = () => {
+      if (gateDismissed) return;
+      gateDismissed = true;
       gate.classList.add('language-gate--exiting');
-
       setTimeout(() => {
         showMainContent(gate, mainContent, viewToggle);
       }, 500);
     };
 
-    const btnHindi = document.getElementById('btn-hindi');
-    const btnEnglish = document.getElementById('btn-english');
+    gate.addEventListener('click', (e) => {
+      const btn = e.target.closest('#btn-hindi, #btn-english');
+      if (!btn) return;
+      const lang = btn.id === 'btn-hindi' ? 'hi' : 'en';
+      if (window.VivahLanguage) window.VivahLanguage.setLanguage(lang);
+      dismissGate();
+    });
 
-    if (btnHindi) btnHindi.addEventListener('click', () => selectLanguage('hi'));
-    if (btnEnglish) btnEnglish.addEventListener('click', () => selectLanguage('en'));
+    window.addEventListener('vivah:languagechange', () => {
+      dismissGate();
+    });
   };
 
   const showMainContent = (gate, mainContent, viewToggle) => {
