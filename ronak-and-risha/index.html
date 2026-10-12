@@ -1,1272 +1,849 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>रोनक &amp; देवांशा — शुभ विवाह</title>
-  <meta name="description" content="रोनक और देवांशा के शुभ विवाह का निमंत्रण पत्र">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --maroon: #800020;
-      --red: #C41E3A;
-      --gold: #D4A017;
-      --saffron: #FF6600;
-      --cream: #F5E6CC;
-      --warm-white: #FFF8F0;
-      --dark: #2D1810;
-      --green: #2E7D32;
-    }
-
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      background: #000;
-      font-family: 'Noto Sans Devanagari', sans-serif;
-    }
-
-    .invitation {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      max-width: 450px;
-      margin: 0 auto;
-      overflow: hidden;
-      background: var(--cream);
-    }
-
-    /* ========== SLIDE SYSTEM ========== */
-    .slide {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1.2s ease, transform 1.2s ease;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .slide.active {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-      z-index: 10;
-    }
-
-    .slide.exiting {
-      opacity: 0;
-      transform: scale(0.95);
-      z-index: 5;
-    }
-
-    /* ========== BACKGROUND LAYERS ========== */
-    .slide__bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-    }
-
-    .slide__bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.15);
-    }
-
-    .slide__bg--parallax {
-      animation: parallaxDrift 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes parallaxDrift {
-      0% { transform: scale(1.08) translateY(0); }
-      100% { transform: scale(1.08) translateY(-2%); }
-    }
-
-    /* ========== SCENE BACKGROUNDS (CSS art until images are added) ========== */
-
-    /* Scene 1: Opening - Temple with mountains */
-    .bg-opening {
-      background: linear-gradient(180deg,
-        #87CEEB 0%, #B0D4E8 25%, #D4C4A8 45%,
-        #C8B090 55%, #A0907A 70%, #808070 100%);
-    }
-    .bg-opening::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 40%;
-      background: linear-gradient(0deg, #8B7355 0%, #A09080 40%, transparent 100%);
-    }
-
-    /* Scene 2: Names - Watercolor cream */
-    .bg-names {
-      background: radial-gradient(ellipse at center,
-        var(--warm-white) 0%, var(--cream) 50%, #E8D5B5 100%);
-    }
-    .bg-names::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 80%, rgba(255,165,0,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,105,180,0.06) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(212,160,23,0.05) 0%, transparent 60%);
-    }
-
-    /* Scene 3: Haldi - Yellow warmth */
-    .bg-haldi {
-      background: linear-gradient(180deg,
-        #FFF8DC 0%, #FFE4A0 20%, #FFD700 40%,
-        #E8C840 60%, #D4A017 80%, #B8860B 100%);
-    }
-
-    /* Scene 4: Mehendi - Green garden */
-    .bg-mehendi {
-      background: linear-gradient(180deg,
-        #F0FFF0 0%, #90EE90 25%, #3CB371 50%,
-        #2E8B57 75%, #006400 100%);
-    }
-
-    /* Scene 5: Sangeet - Evening colorful */
-    .bg-sangeet {
-      background: linear-gradient(180deg,
-        #1a0533 0%, #2d1b69 20%, #4B0082 35%,
-        #8B4513 55%, #CD853F 70%, #DEB887 85%, #E8C89E 100%);
-    }
-
-    /* Scene 6: Vivah - Night ceremony */
-    .bg-vivah {
-      background: linear-gradient(180deg,
-        #0a0020 0%, #1a0a3a 15%, #2D1810 35%,
-        #5C3317 55%, #8B4513 70%, #A0522D 85%, #CD853F 100%);
-    }
-
-    /* Scene 7: Reception - Grand evening */
-    .bg-reception {
-      background: linear-gradient(180deg,
-        #0f0c29 0%, #302b63 25%, #24243e 40%,
-        #4A3728 60%, #8B6914 75%, #D4A017 100%);
-    }
-
-    /* Scene 8: Darshanabhilashi - Golden ornate */
-    .bg-darshan {
-      background: linear-gradient(180deg,
-        #1a1a4e 0%, #2a2a6e 15%, var(--cream) 30%,
-        var(--warm-white) 50%, var(--cream) 70%,
-        #E8D5B5 85%, #D4A880 100%);
-    }
-
-    /* ========== OVERLAY CONTENT ========== */
-    .slide__content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      width: 100%;
-    }
-
-    /* ========== DECORATIVE ELEMENTS ========== */
-
-    /* Marigold Toran (top border) */
-    .toran {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 60px;
-      z-index: 3;
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .toran__garland {
-      display: flex;
-      gap: 0;
-    }
-
-    .toran__loop {
-      width: 40px;
-      height: 50px;
-      border-radius: 0 0 50% 50%;
-      position: relative;
-      animation: toranSway 3s ease-in-out infinite alternate;
-    }
-
-    .toran__loop:nth-child(odd) { background: var(--saffron); animation-delay: -0.5s; }
-    .toran__loop:nth-child(even) { background: var(--gold); }
-
-    .toran__loop::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--red);
-    }
-
-    @keyframes toranSway {
-      0% { transform: rotate(-2deg); }
-      100% { transform: rotate(2deg); }
-    }
-
-    /* Floating Petals */
-    .petals-container {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .petal {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50% 0 50% 50%;
-      opacity: 0.7;
-      animation: petalFall linear infinite;
-    }
-
-    @keyframes petalFall {
-      0% { transform: translateY(-20px) rotate(0deg) translateX(0); opacity: 0; }
-      10% { opacity: 0.8; }
-      90% { opacity: 0.6; }
-      100% { transform: translateY(calc(100vh + 20px)) rotate(720deg) translateX(80px); opacity: 0; }
-    }
-
-    /* Sparkle particles */
-    .sparkle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: sparkleFloat 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes sparkleFloat {
-      0%, 100% { opacity: 0; transform: scale(0); }
-      50% { opacity: 1; transform: scale(1); }
-    }
-
-    /* Diya (lamp) glow */
-    .diya-glow {
-      position: absolute;
-      bottom: 5%;
-      width: 30px;
-      height: 40px;
-      z-index: 3;
-    }
-
-    .diya-glow--left { left: 8%; }
-    .diya-glow--right { right: 8%; }
-
-    .diya-glow__base {
-      width: 30px;
-      height: 12px;
-      background: var(--gold);
-      border-radius: 0 0 50% 50%;
-      position: absolute;
-      bottom: 0;
-    }
-
-    .diya-glow__flame {
-      width: 10px;
-      height: 16px;
-      background: linear-gradient(to top, var(--saffron), #FFD700, #FFF);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      position: absolute;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: flameFlicker 0.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes flameFlicker {
-      0% { transform: translateX(-50%) scaleX(1) scaleY(1); }
-      33% { transform: translateX(-50%) scaleX(0.9) scaleY(1.1); }
-      66% { transform: translateX(-50%) scaleX(1.1) scaleY(0.95); }
-      100% { transform: translateX(-50%) scaleX(0.95) scaleY(1.05); }
-    }
-
-    .diya-glow::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,165,0,0.4) 0%, transparent 70%);
-      animation: glowPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
-    }
-
-    /* ========== TEXT ANIMATIONS ========== */
-    .anim-fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .anim-fade-down {
-      opacity: 0;
-      transform: translateY(-30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .anim-scale-in {
-      opacity: 0;
-      transform: scale(0.5);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .anim-fade-in {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .slide.active .anim-fade-up,
-    .slide.active .anim-fade-down,
-    .slide.active .anim-scale-in,
-    .slide.active .anim-fade-in {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    /* Staggered delays */
-    .delay-1 { transition-delay: 0.3s !important; }
-    .delay-2 { transition-delay: 0.6s !important; }
-    .delay-3 { transition-delay: 0.9s !important; }
-    .delay-4 { transition-delay: 1.2s !important; }
-    .delay-5 { transition-delay: 1.5s !important; }
-    .delay-6 { transition-delay: 1.8s !important; }
-
-    /* ========== GANPATI SVG ========== */
-    .ganpati-icon {
-      display: block;
-      margin: 0 auto 0.5rem;
-      font-size: 4rem;
-      line-height: 1;
-      color: var(--maroon);
-      filter: drop-shadow(0 2px 8px rgba(128,0,32,0.3));
-      animation: ganpatiBreathe 3s ease-in-out infinite;
-      text-align: center;
-    }
-
-    .ganpati-icon--sm {
-      font-size: 2.8rem;
-    }
-
-    @keyframes ganpatiBreathe {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* ========== TYPOGRAPHY ========== */
-    .yatra { font-family: 'Yatra One', cursive; }
-    .tiro { font-family: 'Tiro Devanagari Hindi', serif; }
-
-    .invocation {
-      font-family: 'Yatra One', cursive;
-      color: var(--maroon);
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
-      letter-spacing: 0.1em;
-      text-shadow: 0 1px 4px rgba(128,0,32,0.15);
-    }
-
-    .title-shubh-vivah {
-      font-family: 'Yatra One', cursive;
-      color: var(--gold);
-      font-size: clamp(2.5rem, 10vw, 4.5rem);
-      text-shadow: 0 3px 12px rgba(0,0,0,0.5), 0 0 40px rgba(212,160,23,0.3);
-      line-height: 1.2;
-    }
-
-    .couple-names {
-      font-family: 'Tiro Devanagari Hindi', serif;
-      color: #FFF;
-      font-size: clamp(1.2rem, 4vw, 2rem);
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      letter-spacing: 0.05em;
-    }
-
-    /* Event title badge */
-    .event-badge {
-      display: inline-block;
-      font-family: 'Yatra One', cursive;
-      font-size: clamp(1.8rem, 7vw, 3rem);
-      padding: 0.3rem 1.5rem;
-      border-radius: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .event-badge--haldi {
-      background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
-      color: #8B6914;
-      border: 2px solid #D4A017;
-      box-shadow: 0 4px 15px rgba(212,160,23,0.3);
-    }
-
-    .event-badge--mehendi {
-      background: linear-gradient(135deg, #F0FFF0, #98FB98);
-      color: #006400;
-      border: 2px solid var(--green);
-      box-shadow: 0 4px 15px rgba(46,125,50,0.3);
-    }
-
-    .event-badge--sangeet {
-      background: linear-gradient(135deg, #FFF0F5, #FFE4E1);
-      color: var(--maroon);
-      border: 2px solid var(--red);
-      box-shadow: 0 4px 15px rgba(196,30,58,0.3);
-    }
-
-    .event-badge--vivah {
-      background: linear-gradient(135deg, #FFF8DC, #FFD700);
-      color: var(--maroon);
-      border: 2px solid var(--gold);
-      box-shadow: 0 4px 20px rgba(212,160,23,0.4);
-    }
-
-    .event-badge--reception {
-      background: linear-gradient(135deg, #E8F5E9, #A5D6A7);
-      color: #1B5E20;
-      border: 2px solid var(--green);
-      box-shadow: 0 4px 15px rgba(46,125,50,0.3);
-    }
-
-    /* Event detail card */
-    .event-card {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 1.5rem 2rem;
-      margin: 1rem auto;
-      max-width: 320px;
-      border: 2px solid rgba(212,160,23,0.3);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    }
-
-    .event-card__date {
-      font-family: 'Yatra One', cursive;
-      color: var(--maroon);
-      font-size: clamp(1.3rem, 5vw, 2rem);
-    }
-
-    .event-card__time {
-      color: var(--red);
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.3rem 0;
-    }
-
-    .event-card__divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 0.5rem auto;
-    }
-
-    .event-card__venue {
-      color: var(--dark);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* Names card styling */
-    .names-card {
-      background: rgba(255,248,240,0.95);
-      border: 3px solid var(--gold);
-      border-radius: 20px;
-      padding: 2rem 1.5rem;
-      margin: 0 auto;
-      max-width: 340px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      position: relative;
-    }
-
-    .names-card::before,
-    .names-card::after {
-      content: '';
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border: 2px solid var(--gold);
-    }
-
-    .names-card::before {
-      top: 8px; left: 8px;
-      border-right: none; border-bottom: none;
-      border-radius: 8px 0 0 0;
-    }
-
-    .names-card::after {
-      bottom: 8px; right: 8px;
-      border-left: none; border-top: none;
-      border-radius: 0 0 8px 0;
-    }
-
-    .groom-name {
-      font-family: 'Yatra One', cursive;
-      color: var(--maroon);
-      font-size: clamp(1.5rem, 6vw, 2.5rem);
-    }
-
-    .parents-line {
-      font-size: 0.85rem;
-      color: var(--dark);
-      line-height: 1.6;
-    }
-
-    .sang-text {
-      font-family: 'Yatra One', cursive;
-      color: var(--gold);
-      font-size: 1.3rem;
-      margin: 0.8rem 0;
-    }
-
-    .bride-name {
-      font-family: 'Yatra One', cursive;
-      color: var(--red);
-      font-size: clamp(1.5rem, 6vw, 2.5rem);
-    }
-
-    /* Darshan card */
-    .darshan-card {
-      background: rgba(255,248,240,0.95);
-      border: 3px solid var(--gold);
-      border-radius: 0 0 50% 50% / 0 0 20% 20%;
-      padding: 2rem 1.5rem 3rem;
-      margin: 0 auto;
-      max-width: 340px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    }
-
-    .darshan-title {
-      font-family: 'Yatra One', cursive;
-      color: var(--maroon);
-      font-size: clamp(1.5rem, 6vw, 2.2rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .family-col h4 {
-      font-family: 'Yatra One', cursive;
-      color: var(--gold);
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .family-col p {
-      font-size: 0.85rem;
-      color: var(--dark);
-      line-height: 1.7;
-    }
-
-    .family-columns {
-      display: flex;
-      gap: 1rem;
-      text-align: left;
-      margin-top: 1rem;
-    }
-
-    .family-col {
-      flex: 1;
-    }
-
-    .family-divider {
-      width: 1px;
-      background: linear-gradient(180deg, transparent, var(--gold), transparent);
-    }
-
-    /* ========== PROGRESS BAR ========== */
-    .progress-bar {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 450px;
-      height: 3px;
-      background: rgba(0,0,0,0.2);
-      z-index: 100;
-    }
-
-    .progress-bar__fill {
-      height: 100%;
-      background: var(--gold);
-      width: 0%;
-      transition: width 0.3s linear;
-    }
-
-    /* ========== PLAY/PAUSE BUTTON ========== */
-    .play-pause {
-      position: fixed;
-      bottom: 16px;
-      right: calc(50% - 210px);
-      z-index: 100;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.6);
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(4px);
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-    }
-
-    .play-pause:hover { background: rgba(0,0,0,0.6); }
-
-    /* ========== SIDE DECORATIVE STRIPS ========== */
-    .side-strip {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 8px;
-      z-index: 4;
-      background: repeating-linear-gradient(
-        180deg,
-        var(--saffron) 0px, var(--saffron) 15px,
-        var(--gold) 15px, var(--gold) 30px,
-        var(--red) 30px, var(--red) 45px
-      );
-      opacity: 0.6;
-    }
-
-    .side-strip--left { left: 0; }
-    .side-strip--right { right: 0; }
-
-    /* ========== SLIDE-SPECIFIC OVERRIDES ========== */
-
-    /* Opening scene: dark overlay for text readability */
-    .slide--opening .slide__bg::after {
-      background: linear-gradient(180deg,
-        rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%,
-        rgba(0,0,0,0.3) 100%);
-    }
-
-    /* Haldi: subtle overlay */
-    .slide--haldi .slide__bg::after {
-      background: linear-gradient(180deg,
-        rgba(255,255,255,0.3) 0%, rgba(255,248,220,0.1) 40%,
-        rgba(139,105,20,0.2) 100%);
-    }
-
-    /* Sangeet/Vivah: darker for readability */
-    .slide--sangeet .slide__bg::after,
-    .slide--vivah .slide__bg::after {
-      background: linear-gradient(180deg,
-        rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 30%,
-        rgba(0,0,0,0.3) 100%);
-    }
-
-    /* ========== MARIGOLD GARLAND TOP DECORATION ========== */
-    .garland-top {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 80px;
-      z-index: 4;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .garland-top__string {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--green), #4CAF50, var(--green));
-    }
-
-    .garland-top__leaf {
-      position: absolute;
-      top: 4px;
-      width: 14px;
-      height: 28px;
-      background: var(--green);
-      border-radius: 0 50% 50% 50%;
-      transform-origin: top center;
-      animation: leafSway 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes leafSway {
-      0% { transform: rotate(-5deg); }
-      100% { transform: rotate(5deg); }
-    }
-
-    /* ========== DECORATIVE HANGING ELEMENTS ========== */
-    .hanging {
-      position: absolute;
-      top: 0;
-      z-index: 4;
-      pointer-events: none;
-    }
-
-    .hanging__chain {
-      width: 2px;
-      background: var(--gold);
-      margin: 0 auto;
-    }
-
-    .hanging__bell {
-      width: 20px;
-      height: 24px;
-      background: var(--gold);
-      border-radius: 0 0 50% 50%;
-      margin: 0 auto;
-      position: relative;
-      animation: bellSwing 3s ease-in-out infinite alternate;
-    }
-
-    .hanging__bell::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 6px;
-      background: #B8860B;
-      border-radius: 50%;
-    }
-
-    @keyframes bellSwing {
-      0% { transform: rotate(-3deg); }
-      100% { transform: rotate(3deg); }
-    }
-
-    /* ========== LOTUS DIVIDER ========== */
-    .lotus-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin: 0.5rem 0;
-    }
-
-    .lotus-divider__line {
-      width: 50px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-
-    .lotus-divider__icon {
-      color: var(--gold);
-      font-size: 0.8rem;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 450px) {
-      .invitation { max-width: 100%; }
-      .play-pause { right: 16px; }
-    }
-
-    @media (min-width: 768px) {
-      .invitation {
-        border-left: 3px solid var(--gold);
-        border-right: 3px solid var(--gold);
-        box-shadow: 0 0 60px rgba(0,0,0,0.5);
-      }
-    }
-
-    /* ========== BACKGROUND IMAGE SUPPORT ========== */
-    .slide__bg[data-src] {
-      background-color: var(--cream);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>रोनक &amp; देवांशा — शुभ विवाह</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --maroon:#800020;--red:#C41E3A;--gold:#D4A017;--gold-light:#F0C040;
+  --saffron:#FF6600;--cream:#F5E6CC;--warm-white:#FFF8F0;--dark:#2D1810;
+  --green:#2E7D32;--deep-gold:#B8860B;--rose:#E8A0A0;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:#1a0a00;font-family:'Noto Sans Devanagari',sans-serif}
+#app{position:relative;width:100%;height:100%;max-width:450px;margin:0 auto;overflow:hidden}
+
+/* ===== CANVAS LAYERS ===== */
+#particleCanvas{position:absolute;inset:0;z-index:2;pointer-events:none}
+
+/* ===== TORAN ===== */
+#toran{position:absolute;top:0;left:0;width:100%;z-index:10;pointer-events:none}
+
+/* ===== PROGRESS DOTS ===== */
+#dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:20}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(212,160,23,0.3);border:1px solid rgba(212,160,23,0.5);transition:all 0.4s;cursor:pointer}
+.dot.active{background:var(--gold);box-shadow:0 0 6px var(--gold);transform:scale(1.3)}
+
+/* ===== SOUND TOGGLE ===== */
+#soundBtn{position:absolute;top:14px;right:14px;z-index:30;width:34px;height:34px;border-radius:50%;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.4);display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(4px)}
+#soundBtn svg{width:16px;height:16px;fill:var(--gold)}
+
+/* ===== SLIDES ===== */
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(40px) scale(0.97);will-change:transform,opacity;padding:60px 22px 50px}
+.slide.active{pointer-events:auto}
+
+/* ===== SVG ORNATE BORDER (reusable) ===== */
+.card{position:relative;width:100%;background:rgba(255,248,240,0.06);border-radius:18px;padding:22px 20px;backdrop-filter:blur(8px)}
+.card::before{content:'';position:absolute;inset:0;border-radius:18px;border:1.5px solid rgba(212,160,23,0.35);background:linear-gradient(135deg,rgba(212,160,23,0.08),transparent 50%,rgba(212,160,23,0.04));pointer-events:none}
+
+/* corner ornament */
+.corner{position:absolute;width:28px;height:28px;opacity:0.7}
+.corner svg{width:100%;height:100%}
+.corner.tl{top:6px;left:6px}
+.corner.tr{top:6px;right:6px;transform:scaleX(-1)}
+.corner.bl{bottom:6px;left:6px;transform:scaleY(-1)}
+.corner.br{bottom:6px;right:6px;transform:scale(-1,-1)}
+
+/* ===== TYPOGRAPHY ===== */
+.devanagari-title{font-family:'Yatra One',cursive;color:var(--gold);letter-spacing:0.04em;line-height:1.2}
+.devanagari-body{font-family:'Tiro Devanagari Hindi',serif;color:var(--cream);line-height:1.6}
+.playfair{font-family:'Playfair Display',serif}
+.text-gradient{background:linear-gradient(135deg,#F0C040,#D4A017,#B8860B,#D4A017);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.text-shadow-gold{text-shadow:0 0 20px rgba(212,160,23,0.5),0 2px 4px rgba(0,0,0,0.5)}
+
+/* ===== DIVIDER SVG ===== */
+.ornate-divider{display:flex;align-items:center;justify-content:center;margin:10px 0;opacity:0.7}
+.ornate-divider svg{width:180px;height:16px}
+
+/* ===== SLIDE 1 — OPENING ===== */
+#s1{background:radial-gradient(ellipse at 50% 30%,#3d0a00 0%,#1a0500 60%,#0d0200 100%)}
+#s1 .mandala-wrap{position:relative;margin-bottom:14px}
+#mandala{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:220px;height:220px;opacity:0.35}
+#ganesh-img{width:160px;height:160px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 0 20px rgba(255,120,0,0.6))}
+.shubh-tag{font-family:'Yatra One',cursive;font-size:13px;color:var(--saffron);letter-spacing:0.25em;opacity:0.9;text-transform:uppercase}
+.main-title{font-family:'Yatra One',cursive;font-size:36px;line-height:1.1;text-align:center}
+.amp-text{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--saffron);display:block;margin:2px 0}
+.names-row{font-family:'Yatra One',cursive;font-size:28px;text-align:center;letter-spacing:0.02em}
+.diya-row{display:flex;gap:18px;justify-content:center;margin-top:14px}
+
+/* ===== DIYA ===== */
+.diya-wrap{display:flex;flex-direction:column;align-items:center}
+.diya-svg{width:28px;height:36px}
+
+/* ===== SLIDE 2 — NAMES ===== */
+#s2{background:radial-gradient(ellipse at 50% 40%,#2a0a18 0%,#150310 60%,#0a0108 100%)}
+.names-card{text-align:center;width:100%}
+.person-block{padding:12px 16px;margin:8px 0}
+.person-label{font-family:'Tiro Devanagari Hindi',serif;font-size:11px;color:var(--saffron);letter-spacing:0.2em;opacity:0.8;text-transform:uppercase;margin-bottom:4px}
+.person-name{font-family:'Yatra One',cursive;font-size:28px;color:var(--gold);text-shadow:0 0 16px rgba(212,160,23,0.4)}
+.person-parents{font-family:'Tiro Devanagari Hindi',serif;font-size:12.5px;color:var(--cream);opacity:0.8;line-height:1.7;margin-top:4px}
+.sang-text{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--saffron);margin:4px 0}
+
+/* ===== EVENT SLIDES COMMON ===== */
+.event-slide-bg{position:absolute;inset:0;opacity:0.08}
+.event-date-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.3);border-radius:30px;padding:5px 14px;margin-bottom:10px}
+.event-date-text{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold);letter-spacing:0.1em}
+.event-title{font-family:'Yatra One',cursive;font-size:30px;text-align:center;margin-bottom:6px}
+.event-subtitle{font-family:'Tiro Devanagari Hindi',serif;font-size:13px;text-align:center;opacity:0.75;color:var(--cream);line-height:1.6}
+.event-time{font-family:'Playfair Display',serif;font-size:14px;color:var(--gold-light);margin-top:6px}
+.event-venue{font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:var(--cream);opacity:0.65;margin-top:4px}
+
+/* ===== SLIDE 3 — GANESH STHAPNA ===== */
+#s3{background:radial-gradient(ellipse at 50% 30%,#2d0a0a 0%,#150505 100%)}
+
+/* ===== SLIDE 4 — HALDI ===== */
+#s4{background:radial-gradient(ellipse at 50% 40%,#2d2000 0%,#1a1200 100%)}
+.haldi-splatter{position:absolute;border-radius:50%;background:rgba(255,220,0,0.06);pointer-events:none}
+
+/* ===== SLIDE 5 — MATA PUJAN ===== */
+#s5{background:radial-gradient(ellipse at 50% 40%,#2d0a1a 0%,#150010 100%)}
+
+/* ===== SLIDE 6 — GARBA / SANGEET ===== */
+#s6{background:radial-gradient(ellipse at 50% 40%,#1a0a2d 0%,#0a0018 100%)}
+
+/* ===== SLIDE 7 — BARAT ===== */
+#s7{background:radial-gradient(ellipse at 50% 40%,#0a1a2d 0%,#050d18 100%)}
+
+/* ===== SLIDE 8 — KHET LAGUN ===== */
+#s8{background:radial-gradient(ellipse at 50% 40%,#0a2d0a 0%,#051408 100%)}
+
+/* ===== SLIDE 9 — VIVAH (main) ===== */
+#s9{background:radial-gradient(ellipse at 50% 40%,#3d0a00 0%,#200500 60%,#0d0200 100%)}
+.vivah-title{font-family:'Yatra One',cursive;font-size:38px;text-align:center;line-height:1.1}
+.fire-glow{position:absolute;bottom:0;left:0;right:0;height:120px;background:radial-gradient(ellipse at 50% 100%,rgba(255,80,0,0.25) 0%,transparent 70%);pointer-events:none}
+.sacred-fire-row{display:flex;justify-content:center;gap:10px;margin:8px 0}
+
+/* ===== SLIDE 10 — RECEPTION ===== */
+#s10{background:radial-gradient(ellipse at 50% 40%,#0a0d2d 0%,#05070f 100%)}
+
+/* ===== SLIDE 11 — DARSHAN ===== */
+#s11{background:radial-gradient(ellipse at 50% 40%,#1a0a00 0%,#0d0500 100%)}
+.family-block{margin:6px 0}
+.family-title{font-family:'Yatra One',cursive;font-size:16px;color:var(--gold);margin-bottom:2px}
+.family-names{font-family:'Tiro Devanagari Hindi',serif;font-size:12px;color:var(--cream);opacity:0.8;line-height:1.7}
+.blessing-text{font-family:'Tiro Devanagari Hindi',serif;font-style:italic;font-size:12px;color:var(--saffron);text-align:center;opacity:0.85;margin-top:8px;line-height:1.6}
+.shubh-labh{font-family:'Yatra One',cursive;font-size:22px;color:var(--gold);text-align:center;margin-bottom:6px}
+
+/* nav hint */
+.nav-hint{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);font-size:10px;color:rgba(212,160,23,0.4);letter-spacing:0.15em;white-space:nowrap;font-family:'Playfair Display',serif;font-style:italic}
+</style>
 </head>
 <body>
+<div id="app">
 
-<div class="invitation" id="invitation">
+<!-- Particle canvas -->
+<canvas id="particleCanvas"></canvas>
 
-  <!-- ==================== SLIDE 1: OPENING ==================== -->
-  <div class="slide slide--opening active" data-duration="6000">
-    <div class="slide__bg bg-opening slide__bg--parallax"></div>
+<!-- Toran garland -->
+<svg id="toran" viewBox="0 0 450 55" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:55px">
+  <defs>
+    <radialGradient id="flowerG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FF6600"/>
+    </radialGradient>
+    <radialGradient id="leafG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </radialGradient>
+  </defs>
+  <!-- rope -->
+  <path d="M0,8 Q112,28 225,8 Q337,28 450,8" stroke="rgba(139,90,43,0.6)" stroke-width="1.5" fill="none"/>
+  <!-- flowers at intervals -->
+  <g id="toranFlowers"></g>
+</svg>
 
-    <div class="petals-container" id="petals-opening"></div>
+<!-- Sound button -->
+<button id="soundBtn" title="Sound">
+  <svg id="soundIcon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+</button>
 
-    <div class="garland-top">
-      <div class="garland-top__string"></div>
-    </div>
+<!-- Progress dots -->
+<div id="dots"></div>
 
-    <div class="slide__content">
-      <img class="ganpati-icon anim-scale-in" src="ganesh.png" alt="श्री गणेश" width="90">
+<!-- ============================================================
+     SLIDES
+     ============================================================ -->
 
-      <p class="title-shubh-vivah anim-fade-up delay-1">शुभ विवाह</p>
-      <div class="lotus-divider anim-fade-in delay-2">
-        <span class="lotus-divider__line"></span>
-        <span class="lotus-divider__icon">✿</span>
-        <span class="lotus-divider__line"></span>
-      </div>
-      <p class="couple-names anim-fade-up delay-3">रोनक &amp; देवांशा</p>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div>
-      <div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div>
-      <div class="diya-glow__base"></div>
+<!-- SLIDE 1: OPENING -->
+<div class="slide" id="s1">
+  <div class="shubh-tag s1-el">॥ श्री गणेशाय नमः ॥</div>
+  <div class="mandala-wrap s1-el" style="margin:10px 0">
+    <svg id="mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
+    <img id="ganesh-img" src="ganesh.png" alt="Ganesha">
+  </div>
+  <div class="main-title text-gradient text-shadow-gold s1-el" style="font-size:38px">शुभ विवाह</div>
+  <div class="s1-el" style="margin:6px 0">
+    <!-- ornate divider -->
+    <svg viewBox="0 0 200 16" width="180" style="display:block;margin:0 auto;opacity:0.65"><path d="M0,8 Q25,2 50,8 Q75,14 100,8 Q125,2 150,8 Q175,14 200,8" stroke="#D4A017" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="3" fill="#D4A017"/><circle cx="50" cy="8" r="1.5" fill="#FF6600"/><circle cx="150" cy="8" r="1.5" fill="#FF6600"/></svg>
+  </div>
+  <div class="names-row text-gradient s1-el" style="font-size:30px">रोनक</div>
+  <div class="s1-el" style="font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--saffron);margin:2px 0">&amp;</div>
+  <div class="names-row text-gradient s1-el" style="font-size:30px">देवांशा</div>
+  <div class="s1-el" style="margin-top:14px">
+    <div class="diya-row">
+      <div class="diya-wrap"><svg class="diya-svg diya-anim" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="14" cy="28" rx="11" ry="6" fill="#C8791A"/><path d="M3,28 Q14,20 25,28" fill="#E8A040"/><line x1="14" y1="22" x2="14" y2="14" stroke="#FFD700" stroke-width="1.5"/><ellipse cx="14" cy="10" rx="3" ry="5" fill="#FF8C00" opacity="0.9"/><ellipse cx="14" cy="8" rx="1.5" ry="3" fill="#FFE066" opacity="0.95"/><ellipse cx="14" cy="7" rx="0.7" ry="1.5" fill="white" opacity="0.8"/></svg></div>
+      <div class="diya-wrap"><svg class="diya-svg diya-anim" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation-delay:0.4s"><ellipse cx="14" cy="28" rx="11" ry="6" fill="#C8791A"/><path d="M3,28 Q14,20 25,28" fill="#E8A040"/><line x1="14" y1="22" x2="14" y2="14" stroke="#FFD700" stroke-width="1.5"/><ellipse cx="14" cy="10" rx="3" ry="5" fill="#FF8C00" opacity="0.9"/><ellipse cx="14" cy="8" rx="1.5" ry="3" fill="#FFE066" opacity="0.95"/><ellipse cx="14" cy="7" rx="0.7" ry="1.5" fill="white" opacity="0.8"/></svg></div>
+      <div class="diya-wrap"><svg class="diya-svg diya-anim" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation-delay:0.8s"><ellipse cx="14" cy="28" rx="11" ry="6" fill="#C8791A"/><path d="M3,28 Q14,20 25,28" fill="#E8A040"/><line x1="14" y1="22" x2="14" y2="14" stroke="#FFD700" stroke-width="1.5"/><ellipse cx="14" cy="10" rx="3" ry="5" fill="#FF8C00" opacity="0.9"/><ellipse cx="14" cy="8" rx="1.5" ry="3" fill="#FFE066" opacity="0.95"/><ellipse cx="14" cy="7" rx="0.7" ry="1.5" fill="white" opacity="0.8"/></svg></div>
     </div>
   </div>
-
-  <!-- ==================== SLIDE 2: NAMES ==================== -->
-  <div class="slide slide--names" data-duration="7000">
-    <div class="slide__bg bg-names"></div>
-    <div class="petals-container" id="petals-names"></div>
-
-    <div class="garland-top">
-      <div class="garland-top__string"></div>
-    </div>
-
-    <div class="slide__content">
-      <img class="ganpati-icon ganpati-icon--sm anim-scale-in" src="ganesh.png" alt="श्री गणेश" width="60">
-
-      <div class="names-card">
-        <p class="invocation anim-fade-down" style="font-size:1rem; margin-bottom:0.8rem;">|| श्री गणेशाय नमः ||</p>
-
-        <p class="groom-name anim-fade-up delay-1">चि. रोनक</p>
-        <p class="parents-line anim-fade-in delay-2">सुपुत्र श्रीमती [माता] एवं श्री [पिता]</p>
-
-        <p class="sang-text anim-scale-in delay-3">संग</p>
-
-        <p class="bride-name anim-fade-up delay-4">आयु. कु. देवांशा</p>
-        <p class="parents-line anim-fade-in delay-5">सुपुत्री श्रीमती [माता] एवं श्री [पिता]</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 3: GANESH STHAPANA ==================== -->
-  <div class="slide slide--ganesh" data-duration="5000">
-    <div class="slide__bg bg-haldi" style="background: linear-gradient(180deg, #FFF8F0 0%, #FFE4B5 30%, #FFD700 60%, #D4A017 100%);"></div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--haldi anim-scale-in">गणेश स्थापना</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">15 नवम्बर 2026</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue">[स्थान यहाँ]</p>
-      </div>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 4: HALDI ==================== -->
-  <div class="slide slide--haldi" data-duration="6000">
-    <div class="slide__bg bg-haldi slide__bg--parallax"></div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--haldi anim-scale-in">तेल / हल्दी</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">16 नवम्बर 2026</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue">[स्थान यहाँ]</p>
-      </div>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 5: MATA PUJAN ==================== -->
-  <div class="slide" data-duration="5000">
-    <div class="slide__bg" style="background: linear-gradient(180deg, #FFF0F5 0%, #FFB6C1 30%, #FF69B4 60%, #C71585 100%);"></div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--sangeet anim-scale-in" style="background: linear-gradient(135deg, #FFF0F5, #FFB6C1); color: #8B0040;">माता पूजन</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">17 नवम्बर 2026</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue">[स्थान यहाँ]</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 6: GARBA / SANGEET ==================== -->
-  <div class="slide slide--sangeet" data-duration="6000">
-    <div class="slide__bg bg-sangeet slide__bg--parallax"></div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--sangeet anim-scale-in">गरबा / संगीत</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">18 नवम्बर 2026</p>
-        <p class="event-card__time anim-fade-in delay-2">शाम</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue anim-fade-in delay-3">[स्थान यहाँ]</p>
-      </div>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 7: BARAT PRASTHAN ==================== -->
-  <div class="slide" data-duration="5000">
-    <div class="slide__bg bg-vivah" style="background: linear-gradient(180deg, #FFE4B5 0%, #DEB887 30%, #D2691E 60%, #8B4513 100%);">
-    </div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--vivah anim-scale-in">बारात प्रस्थान</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">20 नवम्बर 2026</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue anim-fade-in delay-2">[स्थान यहाँ]</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 8: KHET LAGUN ==================== -->
-  <div class="slide" data-duration="5000">
-    <div class="slide__bg bg-haldi" style="background: linear-gradient(180deg, #FFF8DC 0%, #FAEBD7 30%, #DEB887 60%, #D2B48C 100%);"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--haldi anim-scale-in">खेत लगुन</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">21 नवम्बर 2026</p>
-        <p class="event-card__time anim-fade-in delay-2">सुबह 11:30 AM — 2:00 PM</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue anim-fade-in delay-3">[स्थान यहाँ]</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 9: VIVAH ==================== -->
-  <div class="slide slide--vivah" data-duration="7000">
-    <div class="slide__bg bg-vivah slide__bg--parallax"></div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--vivah anim-scale-in" style="font-size: clamp(2rem, 8vw, 3.5rem);">विवाह</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">21 नवम्बर 2026</p>
-        <p class="event-card__time anim-fade-in delay-2">शाम 9:00 PM — 10:00 PM</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue anim-fade-in delay-3">[विवाह स्थल]<br>[पता]</p>
-      </div>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 10: RECEPTION ==================== -->
-  <div class="slide slide--reception" data-duration="6000">
-    <div class="slide__bg bg-reception slide__bg--parallax"></div>
-    <div class="petals-container"></div>
-
-    <div class="slide__content">
-      <p class="event-badge event-badge--reception anim-scale-in">रिसेप्शन</p>
-
-      <div class="event-card anim-fade-up delay-1">
-        <p class="event-card__date">29 नवम्बर 2026</p>
-        <p class="event-card__time anim-fade-in delay-2">शाम 7:30 PM</p>
-        <div class="event-card__divider"></div>
-        <p class="event-card__venue anim-fade-in delay-3">[रिसेप्शन स्थल]<br>[पता]</p>
-      </div>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-  </div>
-
-  <!-- ==================== SLIDE 11: DARSHANABHILASHI ==================== -->
-  <div class="slide slide--darshan" data-duration="8000">
-    <div class="slide__bg bg-darshan"></div>
-
-    <div class="slide__content">
-      <p class="invocation anim-fade-down" style="margin-bottom: 0.5rem;">|| शुभ लाभ ||</p>
-
-      <div class="darshan-card anim-fade-up delay-1">
-        <p class="darshan-title">दर्शनाभिलाषी</p>
-
-        <div class="lotus-divider">
-          <span class="lotus-divider__line"></span>
-          <span class="lotus-divider__icon">✿</span>
-          <span class="lotus-divider__line"></span>
-        </div>
-
-        <p class="anim-fade-in delay-2" style="font-size:0.85rem; color: var(--dark); margin-bottom:0.8rem;">
-          दोनों परिवारों की ओर से सादर आमंत्रण
-        </p>
-
-        <div class="family-columns anim-fade-in delay-3">
-          <div class="family-col">
-            <h4>वर पक्ष</h4>
-            <p>श्रीमती [माता]<br>एवं श्री [पिता]</p>
-          </div>
-          <div class="family-divider"></div>
-          <div class="family-col">
-            <h4>वधू पक्ष</h4>
-            <p>श्रीमती [माता]<br>एवं श्री [पिता]</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="anim-fade-in delay-5" style="margin-top:1rem; font-family:'Tiro Devanagari Hindi',serif; color:var(--gold); font-size:0.9rem; font-style:italic;">
-        सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः
-      </p>
-    </div>
-
-    <div class="diya-glow diya-glow--left">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-    <div class="diya-glow diya-glow--right">
-      <div class="diya-glow__flame"></div><div class="diya-glow__base"></div>
-    </div>
-  </div>
-
-  <!-- Side decoration strips -->
-  <div class="side-strip side-strip--left"></div>
-  <div class="side-strip side-strip--right"></div>
-
-  <!-- Progress bar -->
-  <div class="progress-bar">
-    <div class="progress-bar__fill" id="progress-fill"></div>
-  </div>
-
-  <!-- Play/Pause -->
-  <button class="play-pause" id="play-pause" aria-label="Play/Pause">⏸</button>
-
 </div>
 
+<!-- SLIDE 2: NAMES -->
+<div class="slide" id="s2">
+  <div class="card" style="max-width:380px">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/><circle cx="2" cy="14" r="1" fill="#FF6600" opacity="0.5"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/><circle cx="2" cy="14" r="1" fill="#FF6600" opacity="0.5"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/><circle cx="2" cy="14" r="1" fill="#FF6600" opacity="0.5"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/><circle cx="2" cy="14" r="1" fill="#FF6600" opacity="0.5"/></svg></div>
+    <div class="names-card">
+      <div class="s2-el" style="font-family:'Tiro Devanagari Hindi',serif;font-size:11px;color:var(--saffron);letter-spacing:0.2em;opacity:0.85;margin-bottom:12px">॥ वर परिचय ॥</div>
+      <div class="person-block s2-el">
+        <div class="person-label">वर</div>
+        <div class="person-name text-gradient">चि. रोनक</div>
+        <div class="person-parents">सुपुत्र श्रीमती [माता जी] एवं श्री [पिता जी]</div>
+      </div>
+      <div class="s2-el" style="margin:8px 0">
+        <svg viewBox="0 0 200 16" width="160" style="display:block;margin:0 auto;opacity:0.5"><path d="M0,8 L80,8 M120,8 L200,8" stroke="#D4A017" stroke-width="1"/><path d="M85,4 Q100,0 115,4 Q100,8 85,4Z" fill="#FF6600" opacity="0.8"/></svg>
+      </div>
+      <div class="sang-text s2-el">✦ संग ✦</div>
+      <div class="s2-el" style="margin:8px 0">
+        <svg viewBox="0 0 200 16" width="160" style="display:block;margin:0 auto;opacity:0.5"><path d="M0,8 L80,8 M120,8 L200,8" stroke="#D4A017" stroke-width="1"/><path d="M85,4 Q100,0 115,4 Q100,8 85,4Z" fill="#FF6600" opacity="0.8"/></svg>
+      </div>
+      <div class="s2-el" style="font-family:'Tiro Devanagari Hindi',serif;font-size:11px;color:var(--saffron);letter-spacing:0.2em;opacity:0.85;margin-bottom:12px">॥ वधू परिचय ॥</div>
+      <div class="person-block s2-el">
+        <div class="person-label">वधू</div>
+        <div class="person-name text-gradient">आयु. कु. देवांशा</div>
+        <div class="person-parents">सुपुत्री श्रीमती [माता जी] एवं श्री [पिता जी]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: GANESH STHAPNA -->
+<div class="slide" id="s3">
+  <div class="card" style="text-align:center;max-width:360px">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="s3-el">
+      <div style="font-size:44px;margin-bottom:8px">🪔</div>
+      <div class="event-date-badge" style="margin:0 auto 10px"><span class="event-date-text">15 November 2026 • रविवार</span></div>
+      <div class="event-title text-gradient">गणेश स्थापना</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#D4A017" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#FF6600"/></svg>
+      <div class="event-subtitle">मंगल कार्य का शुभारम्भ<br>गणपति आगमन एवं स्थापना</div>
+      <div class="event-time">सायं 5:00 बजे से</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: HALDI -->
+<div class="slide" id="s4">
+  <div style="position:absolute;inset:0;overflow:hidden">
+    <div class="haldi-splatter" style="width:80px;height:80px;top:15%;left:8%;background:rgba(255,200,0,0.07);filter:blur(15px)"></div>
+    <div class="haldi-splatter" style="width:60px;height:60px;bottom:25%;right:10%;background:rgba(255,180,0,0.06);filter:blur(12px)"></div>
+  </div>
+  <div class="card" style="text-align:center;max-width:360px;border-color:rgba(255,200,0,0.3)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FFD700" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FFD700" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FFD700" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FFD700" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FFD700" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FFD700" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FFD700" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FFD700" opacity="0.6"/></svg></div>
+    <div class="s4-el">
+      <div style="font-size:40px;margin-bottom:8px">🌿</div>
+      <div class="event-date-badge" style="margin:0 auto 10px;border-color:rgba(255,200,0,0.4)"><span class="event-date-text" style="color:#FFD700">16 November 2026 • सोमवार</span></div>
+      <div class="event-title" style="color:#FFD700;text-shadow:0 0 20px rgba(255,200,0,0.4)">तेल / हल्दी</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#FFD700" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#FF9900"/></svg>
+      <div class="event-subtitle">हल्दी की रस्म<br>पवित्र तेल व हल्दी उबटन</div>
+      <div class="event-time" style="color:#FFD700">प्रातः 9:00 बजे से</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: MATA PUJAN -->
+<div class="slide" id="s5">
+  <div class="card" style="text-align:center;max-width:360px;border-color:rgba(255,150,200,0.3)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FF69B4" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FF69B4" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FF69B4" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FF69B4" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FF69B4" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FF69B4" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#FF69B4" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#FF69B4" opacity="0.6"/></svg></div>
+    <div class="s5-el">
+      <div style="font-size:40px;margin-bottom:8px">🌸</div>
+      <div class="event-date-badge" style="margin:0 auto 10px;border-color:rgba(255,150,200,0.4)"><span class="event-date-text" style="color:#FF9EC7">17 November 2026 • मंगलवार</span></div>
+      <div class="event-title" style="color:#FF9EC7;text-shadow:0 0 20px rgba(255,100,180,0.4)">माता पूजन</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#FF69B4" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#FF69B4"/></svg>
+      <div class="event-subtitle">माता रानी का आशीर्वाद<br>कुल देवी की पूजा अर्चना</div>
+      <div class="event-time" style="color:#FF9EC7">प्रातः 10:00 बजे से</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: GARBA / SANGEET -->
+<div class="slide" id="s6">
+  <div class="card" style="text-align:center;max-width:360px;border-color:rgba(180,100,255,0.3)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#B060FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#B060FF" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#B060FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#B060FF" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#B060FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#B060FF" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#B060FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#B060FF" opacity="0.6"/></svg></div>
+    <div class="s6-el">
+      <div style="font-size:40px;margin-bottom:8px">🎶</div>
+      <div class="event-date-badge" style="margin:0 auto 10px;border-color:rgba(180,100,255,0.4)"><span class="event-date-text" style="color:#C890FF">18 November 2026 • बुधवार</span></div>
+      <div class="event-title" style="color:#C890FF;text-shadow:0 0 20px rgba(180,100,255,0.4)">गरबा / संगीत</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#B060FF" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#FF69B4"/></svg>
+      <div class="event-subtitle">नृत्य, संगीत एवं उत्सव<br>परिवार एवं मित्रों के संग</div>
+      <div class="event-time" style="color:#C890FF">शाम 7:00 बजे से</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: BARAT -->
+<div class="slide" id="s7">
+  <div class="card" style="text-align:center;max-width:360px;border-color:rgba(100,180,255,0.3)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60AAFF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60AAFF" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60AAFF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60AAFF" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60AAFF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60AAFF" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60AAFF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60AAFF" opacity="0.6"/></svg></div>
+    <div class="s7-el">
+      <div style="font-size:40px;margin-bottom:8px">🐴</div>
+      <div class="event-date-badge" style="margin:0 auto 10px;border-color:rgba(100,180,255,0.4)"><span class="event-date-text" style="color:#90CCFF">20 November 2026 • शुक्रवार</span></div>
+      <div class="event-title" style="color:#90CCFF;text-shadow:0 0 20px rgba(100,180,255,0.4)">बारात प्रस्थान</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#60AAFF" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#60AAFF"/></svg>
+      <div class="event-subtitle">वर यात्रा का शुभ प्रस्थान<br>बाजे-गाजे के साथ बारात</div>
+      <div class="event-time" style="color:#90CCFF">शाम 6:00 बजे से</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: KHET LAGUN -->
+<div class="slide" id="s8">
+  <div class="card" style="text-align:center;max-width:360px;border-color:rgba(100,200,100,0.3)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60CC60" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60CC60" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60CC60" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60CC60" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60CC60" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60CC60" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#60CC60" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#60CC60" opacity="0.6"/></svg></div>
+    <div class="s8-el">
+      <div style="font-size:40px;margin-bottom:8px">🌾</div>
+      <div class="event-date-badge" style="margin:0 auto 10px;border-color:rgba(100,200,100,0.4)"><span class="event-date-text" style="color:#90EE90">21 November 2026 • शनिवार</span></div>
+      <div class="event-title" style="color:#90EE90;text-shadow:0 0 20px rgba(100,200,100,0.4)">खेत लगुन</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#60CC60" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#90EE90"/></svg>
+      <div class="event-subtitle">लग्न पत्रिका वाचन</div>
+      <div class="event-time" style="color:#90EE90">प्रातः 11:30 – दोपहर 2:00 बजे</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: VIVAH (main) -->
+<div class="slide" id="s9">
+  <div class="fire-glow"></div>
+  <div class="s9-el" style="text-align:center">
+    <div style="font-family:'Tiro Devanagari Hindi',serif;font-size:12px;color:var(--saffron);letter-spacing:0.3em;opacity:0.9;margin-bottom:8px">॥ मङ्गलम् भगवान् विष्णुः ॥</div>
+    <div class="event-date-badge" style="margin:0 auto 10px"><span class="event-date-text">21 November 2026 • शनिवार</span></div>
+  </div>
+  <div class="card s9-el" style="text-align:center;max-width:380px;border-color:rgba(212,160,23,0.5);background:rgba(80,10,0,0.4)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="2" fill="none"/><circle cx="5" cy="5" r="2.5" fill="#D4A017"/><circle cx="12" cy="2" r="1.5" fill="#FF6600" opacity="0.7"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="2" fill="none"/><circle cx="5" cy="5" r="2.5" fill="#D4A017"/><circle cx="12" cy="2" r="1.5" fill="#FF6600" opacity="0.7"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="2" fill="none"/><circle cx="5" cy="5" r="2.5" fill="#D4A017"/><circle cx="12" cy="2" r="1.5" fill="#FF6600" opacity="0.7"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="2" fill="none"/><circle cx="5" cy="5" r="2.5" fill="#D4A017"/><circle cx="12" cy="2" r="1.5" fill="#FF6600" opacity="0.7"/></svg></div>
+    <div class="sacred-fire-row">
+      <svg width="28" height="36" viewBox="0 0 28 36" fill="none"><ellipse cx="14" cy="28" rx="10" ry="5" fill="#C8791A"/><path d="M4,28 Q14,18 24,28" fill="#E8A040"/><ellipse cx="14" cy="16" rx="4" ry="7" fill="#FF4500" opacity="0.85"/><ellipse cx="14" cy="13" rx="2.5" ry="5" fill="#FF8C00" opacity="0.9"/><ellipse cx="14" cy="11" rx="1.2" ry="2.5" fill="#FFE066"/><ellipse cx="14" cy="10" rx="0.6" ry="1.2" fill="white" opacity="0.8"/></svg>
+      <svg width="36" height="44" viewBox="0 0 36 44" fill="none"><ellipse cx="18" cy="36" rx="13" ry="7" fill="#C8791A"/><path d="M5,36 Q18,24 31,36" fill="#E8A040"/><ellipse cx="18" cy="20" rx="6" ry="10" fill="#FF4500" opacity="0.85"/><ellipse cx="18" cy="16" rx="3.5" ry="7" fill="#FF8C00" opacity="0.9"/><ellipse cx="18" cy="13" rx="1.8" ry="3.5" fill="#FFE066"/><ellipse cx="18" cy="12" rx="0.9" ry="1.8" fill="white" opacity="0.8"/></svg>
+      <svg width="28" height="36" viewBox="0 0 28 36" fill="none"><ellipse cx="14" cy="28" rx="10" ry="5" fill="#C8791A"/><path d="M4,28 Q14,18 24,28" fill="#E8A040"/><ellipse cx="14" cy="16" rx="4" ry="7" fill="#FF4500" opacity="0.85"/><ellipse cx="14" cy="13" rx="2.5" ry="5" fill="#FF8C00" opacity="0.9"/><ellipse cx="14" cy="11" rx="1.2" ry="2.5" fill="#FFE066"/><ellipse cx="14" cy="10" rx="0.6" ry="1.2" fill="white" opacity="0.8"/></svg>
+    </div>
+    <div class="vivah-title text-gradient" style="margin:6px 0">विवाह</div>
+    <svg viewBox="0 0 240 16" width="200" style="display:block;margin:6px auto;opacity:0.7"><path d="M0,8 Q30,2 60,8 Q90,14 120,8 Q150,2 180,8 Q210,14 240,8" stroke="#D4A017" stroke-width="1.2" fill="none"/><circle cx="120" cy="8" r="3" fill="#FF6600"/><circle cx="60" cy="8" r="1.8" fill="#D4A017"/><circle cx="180" cy="8" r="1.8" fill="#D4A017"/></svg>
+    <div style="font-family:'Tiro Devanagari Hindi',serif;font-size:14px;color:var(--cream);line-height:1.7;margin:6px 0">
+      सात फेरों का पवित्र बंधन<br>
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold-light)">The Sacred Union</span>
+    </div>
+    <div style="font-family:'Playfair Display',serif;font-size:15px;color:var(--gold-light);margin-top:6px">रात्रि 9:00 – 10:00 बजे</div>
+    <div style="font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:var(--cream);opacity:0.6;margin-top:4px">[स्थान यहाँ]</div>
+  </div>
+</div>
+
+<!-- SLIDE 10: RECEPTION -->
+<div class="slide" id="s10">
+  <div class="card" style="text-align:center;max-width:360px;border-color:rgba(100,140,255,0.35)">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#8090FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#8090FF" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#8090FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#8090FF" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#8090FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#8090FF" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#8090FF" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#8090FF" opacity="0.6"/></svg></div>
+    <div class="s10-el">
+      <div style="font-size:40px;margin-bottom:8px">✨</div>
+      <div class="event-date-badge" style="margin:0 auto 10px;border-color:rgba(100,140,255,0.4)"><span class="event-date-text" style="color:#AAB8FF">29 November 2026 • रविवार</span></div>
+      <div class="event-title" style="color:#AAB8FF;text-shadow:0 0 20px rgba(100,140,255,0.4)">रिसेप्शन</div>
+      <svg viewBox="0 0 200 16" width="150" style="display:block;margin:6px auto;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#8090FF" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#8090FF"/></svg>
+      <div class="event-subtitle">आशीर्वाद एवं स्वागत समारोह<br>
+        <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:12px">Wedding Reception</span>
+      </div>
+      <div class="event-time" style="color:#AAB8FF">सायं 7:30 बजे से</div>
+      <div class="event-venue">[स्थान यहाँ]</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: DARSHNA -->
+<div class="slide" id="s11">
+  <div class="card" style="text-align:center;max-width:390px;padding:20px 18px">
+    <div class="corner tl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 28 28" fill="none"><path d="M2,2 L18,2 Q26,2 26,10 L26,18" stroke="#D4A017" stroke-width="1.5" fill="none"/><circle cx="5" cy="5" r="2" fill="#D4A017" opacity="0.6"/></svg></div>
+    <div class="s11-el">
+      <div class="shubh-labh">॥ शुभ लाभ ॥</div>
+      <svg viewBox="0 0 200 16" width="160" style="display:block;margin:4px auto 12px;opacity:0.6"><path d="M10,8 Q50,2 100,8 Q150,14 190,8" stroke="#D4A017" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2.5" fill="#FF6600"/></svg>
+      <div style="font-family:'Yatra One',cursive;font-size:14px;color:var(--gold);margin-bottom:8px;opacity:0.85">दर्शनाभिलाषी</div>
+
+      <div class="family-block">
+        <div class="family-title">वर पक्ष</div>
+        <div class="family-names">
+          श्री [दादा जी] &amp; श्रीमती [दादी जी]<br>
+          श्री [पिता जी] &amp; श्रीमती [माता जी]<br>
+          [भाई / बहन के नाम]
+        </div>
+      </div>
+
+      <svg viewBox="0 0 200 12" width="140" style="display:block;margin:8px auto;opacity:0.4"><path d="M0,6 L200,6" stroke="#D4A017" stroke-width="0.5" stroke-dasharray="4,4"/></svg>
+
+      <div class="family-block">
+        <div class="family-title">वधू पक्ष</div>
+        <div class="family-names">
+          श्री [नाना जी] &amp; श्रीमती [नानी जी]<br>
+          श्री [पिता जी] &amp; श्रीमती [माता जी]<br>
+          [भाई / बहन के नाम]
+        </div>
+      </div>
+
+      <svg viewBox="0 0 200 16" width="160" style="display:block;margin:10px auto 6px;opacity:0.5"><path d="M0,8 Q50,2 100,8 Q150,14 200,8" stroke="#D4A017" stroke-width="1" fill="none"/><circle cx="100" cy="8" r="2" fill="#FF6600"/></svg>
+
+      <div class="blessing-text">
+        सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः<br>
+        सर्वे भद्राणि पश्यन्तु मा कश्चिद् दुःखभाग्भवेत्
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- nav hint -->
+<div class="nav-hint" id="navHint">swipe up to continue</div>
+
+</div><!-- #app -->
+
+<style>
+/* Diya flame animation */
+@keyframes flicker{
+  0%,100%{transform:scaleX(1) scaleY(1) translateY(0)}
+  25%{transform:scaleX(1.15) scaleY(0.9) translateY(1px)}
+  50%{transform:scaleX(0.9) scaleY(1.1) translateY(-1px)}
+  75%{transform:scaleX(1.1) scaleY(0.95) translateY(0.5px)}
+}
+@keyframes flameGlow{
+  0%,100%{filter:drop-shadow(0 0 8px rgba(255,120,0,0.6)) drop-shadow(0 0 20px rgba(255,60,0,0.5))}
+  50%{filter:drop-shadow(0 0 14px rgba(255,160,0,0.7)) drop-shadow(0 0 28px rgba(255,80,0,0.5))}
+}
+.diya-anim{animation:flameGlow 1.8s ease-in-out infinite}
+.diya-anim ellipse:nth-child(4){transform-origin:14px 28px;animation:flicker 0.3s ease-in-out infinite}
+
+/* Toran sway */
+@keyframes toranSway{
+  0%,100%{transform:rotate(-1deg) translateY(0)}
+  50%{transform:rotate(1deg) translateY(2px)}
+}
+#toran{animation:toranSway 3s ease-in-out infinite;transform-origin:50% 0}
+
+/* Shimmer sweep */
+@keyframes shimmer{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+</style>
+
 <script>
-(function() {
-  const slides = document.querySelectorAll('.slide');
-  const progressFill = document.getElementById('progress-fill');
-  const playPauseBtn = document.getElementById('play-pause');
-  let currentIndex = 0;
-  let isPlaying = true;
-  let timer = null;
-  let progressTimer = null;
-  let progressStart = 0;
+(function(){
+'use strict';
 
-  function getDuration(index) {
-    return parseInt(slides[index].getAttribute('data-duration')) || 5000;
-  }
+// ===== SLIDE CONFIG =====
+const TOTAL = 11;
+const DURATIONS = [6000,7000,5500,5500,5500,5500,5500,5500,7000,5500,8000];
+let current = 0;
+let isAnimating = false;
+let autoTimer = null;
+let soundOn = false;
 
-  function createPetals(container) {
-    if (!container) return;
-    const colors = ['#FF6B6B', '#FF8E8E', '#FFB4B4', '#FF4757', '#FFC0CB', '#FF69B4', '#FF1493'];
-    for (let i = 0; i < 15; i++) {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = (Math.random() * 100) + '%';
-      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      petal.style.animationDuration = (4 + Math.random() * 6) + 's';
-      petal.style.animationDelay = (Math.random() * 5) + 's';
-      petal.style.width = (8 + Math.random() * 8) + 'px';
-      petal.style.height = (8 + Math.random() * 8) + 'px';
-      petal.style.opacity = 0.4 + Math.random() * 0.4;
-      container.appendChild(petal);
-    }
-  }
+// ===== DOM REFS =====
+const app = document.getElementById('app');
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+const dotsEl = document.getElementById('dots');
+const soundBtn = document.getElementById('soundBtn');
+const navHint = document.getElementById('navHint');
+const slides = Array.from(document.querySelectorAll('.slide'));
 
-  function createSparkles(slide) {
-    for (let i = 0; i < 8; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.style.left = (10 + Math.random() * 80) + '%';
-      sparkle.style.top = (10 + Math.random() * 80) + '%';
-      sparkle.style.animationDelay = (Math.random() * 3) + 's';
-      sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
-      slide.appendChild(sparkle);
-    }
-  }
+// ===== RESIZE CANVAS =====
+function resizeCanvas(){
+  canvas.width = app.offsetWidth;
+  canvas.height = app.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-  // Initialize petals for all slides that have petal containers
-  slides.forEach(function(slide) {
-    var petalContainer = slide.querySelector('.petals-container');
-    if (petalContainer) createPetals(petalContainer);
-    createSparkles(slide);
-  });
-
-  // Add garland leaves
-  document.querySelectorAll('.garland-top').forEach(function(garland) {
-    for (var i = 0; i < 20; i++) {
-      var leaf = document.createElement('div');
-      leaf.className = 'garland-top__leaf';
-      leaf.style.left = (i * 5.2) + '%';
-      leaf.style.animationDelay = (i * 0.15) + 's';
-      if (i % 2 === 0) {
-        leaf.style.transform = 'rotate(-30deg)';
-      } else {
-        leaf.style.transform = 'rotate(30deg)';
-      }
-      garland.appendChild(leaf);
-    }
-  });
-
-  function updateProgress(duration) {
-    progressStart = Date.now();
-    if (progressTimer) cancelAnimationFrame(progressTimer);
-
-    function tick() {
-      var elapsed = Date.now() - progressStart;
-      var pct = Math.min((elapsed / duration) * 100, 100);
-      var slideWidth = (currentIndex / slides.length) * 100;
-      var segWidth = (1 / slides.length) * 100;
-      progressFill.style.width = (slideWidth + (pct / 100) * segWidth) + '%';
-      if (elapsed < duration && isPlaying) {
-        progressTimer = requestAnimationFrame(tick);
-      }
-    }
-    tick();
-  }
-
-  function goToSlide(index) {
-    if (index === currentIndex && slides[index].classList.contains('active')) return;
-
-    slides[currentIndex].classList.remove('active');
-    slides[currentIndex].classList.add('exiting');
-
-    setTimeout(function() {
-      slides[currentIndex].classList.remove('exiting');
-      currentIndex = index;
-      slides[currentIndex].classList.add('active');
-    }, 400);
-
-    currentIndex = index;
-  }
-
-  function nextSlide() {
-    var next = (currentIndex + 1) % slides.length;
-    goToSlide(next);
-    scheduleNext();
-  }
-
-  function scheduleNext() {
-    clearTimeout(timer);
-    if (!isPlaying) return;
-    var duration = getDuration(currentIndex);
-    updateProgress(duration);
-    timer = setTimeout(nextSlide, duration);
-  }
-
-  function togglePlay() {
-    isPlaying = !isPlaying;
-    playPauseBtn.textContent = isPlaying ? '⏸' : '▶';
-    if (isPlaying) {
-      scheduleNext();
+// ===== BUILD TORAN =====
+(function buildToran(){
+  const g = document.getElementById('toranFlowers');
+  const W = 450;
+  const spacing = 28;
+  const count = Math.floor(W / spacing) + 1;
+  for(let i = 0; i < count; i++){
+    const x = i * spacing;
+    const t = i / count;
+    const y = 8 + 20 * Math.sin(Math.PI * t); // catenary
+    // alternating flower / leaf
+    if(i % 3 === 1){
+      // leaf
+      g.innerHTML += `<ellipse cx="${x}" cy="${y+8}" rx="5" ry="9" fill="url(#leafG)" transform="rotate(-20,${x},${y+8})" opacity="0.85"/>`;
     } else {
-      clearTimeout(timer);
-      if (progressTimer) cancelAnimationFrame(progressTimer);
+      // marigold
+      const colors = ['#FFD700','#FF8C00','#FF6600'];
+      const c = colors[i % colors.length];
+      // petals
+      for(let p = 0; p < 6; p++){
+        const a = (p / 6) * 360;
+        g.innerHTML += `<ellipse cx="${x}" cy="${y+8}" rx="3" ry="6" fill="${c}" opacity="0.9" transform="rotate(${a},${x},${y+8})"/>`;
+      }
+      g.innerHTML += `<circle cx="${x}" cy="${y+8}" r="3" fill="#FFE066" opacity="0.95"/>`;
     }
   }
+})();
 
-  playPauseBtn.addEventListener('click', togglePlay);
+// ===== BUILD MANDALA =====
+(function buildMandala(){
+  const svg = document.getElementById('mandala');
+  const cx = 100, cy = 100;
+  let html = '';
+  // rings
+  const rings = [
+    {r:85, count:24, petal:'small'},
+    {r:65, count:16, petal:'medium'},
+    {r:45, count:12, petal:'large'},
+    {r:28, count:8, petal:'small'},
+  ];
+  rings.forEach((ring, ri) => {
+    const colors = ['rgba(212,160,23,0.6)','rgba(255,102,0,0.5)','rgba(255,200,0,0.55)','rgba(212,160,23,0.4)'];
+    for(let i = 0; i < ring.count; i++){
+      const angle = (i / ring.count) * 360;
+      const r = {small:6,medium:10,large:14}[ring.petal];
+      html += `<ellipse cx="${cx}" cy="${cy - ring.r}" rx="${r*0.5}" ry="${r}" fill="${colors[ri]}" transform="rotate(${angle},${cx},${cy})" class="mpetal" style="opacity:0"/>`;
+    }
+    html += `<circle cx="${cx}" cy="${cy}" r="${ring.r}" fill="none" stroke="${colors[ri]}" stroke-width="0.5" opacity="0.3" class="mring" style="opacity:0"/>`;
+  });
+  html += `<circle cx="${cx}" cy="${cy}" r="12" fill="rgba(212,160,23,0.3)" stroke="rgba(212,160,23,0.6)" stroke-width="1"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="6" fill="rgba(255,102,0,0.4)"/>`;
+  svg.innerHTML = html;
+})();
 
-  // Touch/swipe support
-  var touchStartX = 0;
-  var touchStartY = 0;
-  document.addEventListener('touchstart', function(e) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
+// ===== BUILD PROGRESS DOTS =====
+(function buildDots(){
+  for(let i = 0; i < TOTAL; i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  }
+})();
 
-  document.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - touchStartX;
-    var dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dx) < 30 && Math.abs(dy) < 30) return; // tap, not swipe
+function updateDots(idx){
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === idx);
+  });
+}
 
-    if (Math.abs(dy) > Math.abs(dx)) {
-      // Vertical swipe
-      if (dy < -50) {
-        // Swipe up = next
-        clearTimeout(timer);
-        var next = Math.min(currentIndex + 1, slides.length - 1);
-        goToSlide(next);
-        scheduleNext();
-      } else if (dy > 50) {
-        // Swipe down = prev
-        clearTimeout(timer);
-        var prev = Math.max(currentIndex - 1, 0);
-        goToSlide(prev);
-        scheduleNext();
+// ===== PARTICLES =====
+const particles = [];
+const PARTICLE_TYPES = {
+  gold: { colors:['#FFD700','#F0C040','#D4A017','#FFF0A0'], size:[2,5], speed:[0.4,1.2], life:[120,200] },
+  rose: { colors:['#FFB6C1','#FF69B4','#FF1493','#FFE4E1'], size:[4,9], speed:[0.2,0.7], life:[150,250] },
+  purple:{ colors:['#DDA0DD','#DA70D6','#BA55D3','#E6B0FF'], size:[2,4], speed:[0.5,1.0], life:[100,180] },
+  blue:  { colors:['#87CEEB','#4169E1','#6A5ACD','#B0C4DE'], size:[2,4], speed:[0.4,0.9], life:[100,170] },
+  fire:  { colors:['#FF4500','#FF6600','#FFD700','#FF8C00'], size:[3,7], speed:[0.5,1.5], life:[80,150] },
+};
+
+function spawnParticle(type){
+  const cfg = PARTICLE_TYPES[type] || PARTICLE_TYPES.gold;
+  const W = canvas.width, H = canvas.height;
+  return {
+    x: Math.random() * W,
+    y: H + 10,
+    vx: (Math.random() - 0.5) * 1.2,
+    vy: -(cfg.speed[0] + Math.random() * (cfg.speed[1] - cfg.speed[0])),
+    size: cfg.size[0] + Math.random() * (cfg.size[1] - cfg.size[0]),
+    color: cfg.colors[Math.floor(Math.random() * cfg.colors.length)],
+    life: cfg.life[0] + Math.random() * (cfg.life[1] - cfg.life[0]),
+    age: 0,
+    type,
+    spin: (Math.random() - 0.5) * 0.1,
+    angle: Math.random() * Math.PI * 2,
+  };
+}
+
+const SLIDE_PARTICLE_TYPE = ['gold','gold','gold','gold','rose','purple','purple','gold','fire','blue','gold'];
+let particleTimer = null;
+
+function startParticles(type){
+  clearInterval(particleTimer);
+  particleTimer = setInterval(() => {
+    if(particles.length < 80) particles.push(spawnParticle(type));
+  }, 120);
+}
+
+function animParticles(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for(let i = particles.length - 1; i >= 0; i--){
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vx += (Math.random() - 0.5) * 0.05;
+    p.angle += p.spin;
+    p.age++;
+    const life = p.age / p.life;
+    const alpha = life < 0.2 ? life / 0.2 : (life > 0.7 ? 1 - (life - 0.7) / 0.3 : 1);
+    if(p.age >= p.life || p.y < -20){
+      particles.splice(i, 1);
+      continue;
+    }
+    ctx.save();
+    ctx.globalAlpha = alpha * 0.8;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle);
+    if(p.type === 'rose' || p.type === 'purple'){
+      // petal shape
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size * 0.5, p.size, 0, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    } else if(p.type === 'fire'){
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size * 0.4, p.size, 0, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = '#FF4500';
+      ctx.fill();
+    } else {
+      // sparkle diamond
+      ctx.beginPath();
+      ctx.moveTo(0, -p.size);
+      ctx.lineTo(p.size * 0.4, 0);
+      ctx.lineTo(0, p.size);
+      ctx.lineTo(-p.size * 0.4, 0);
+      ctx.closePath();
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = p.color;
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// ===== MANDALA ENTRANCE ANIMATION =====
+function animMandala(){
+  const petals = document.querySelectorAll('#mandala .mpetal');
+  const rings = document.querySelectorAll('#mandala .mring');
+  gsap.fromTo(rings, {opacity:0, scale:0},{
+    opacity:0.3, scale:1, duration:1.4, stagger:0.25, ease:'power2.out',
+    transformOrigin:'100px 100px'
+  });
+  gsap.fromTo(petals, {opacity:0, scale:0},{
+    opacity:1, scale:1, duration:0.8, stagger:0.015, ease:'back.out(2)',
+    delay:0.3, transformOrigin:'100px 100px'
+  });
+}
+
+// ===== SLIDE ENTER ANIMATIONS =====
+function animateSlideIn(idx){
+  const slide = slides[idx];
+  const elClass = `s${idx+1}-el`;
+  const els = slide.querySelectorAll(`.${elClass}`);
+
+  switch(idx){
+    case 0: {
+      const tl = gsap.timeline();
+      tl.from('.shubh-tag.s1-el', {y:-20, opacity:0, duration:0.7, ease:'power2.out'})
+        .from('#ganesh-img', {scale:0.5, opacity:0, duration:1.0, ease:'back.out(2)'}, '-=0.3')
+        .from('.main-title.s1-el', {y:30, opacity:0, duration:0.8, ease:'power3.out'}, '-=0.5')
+        .from('.names-row.s1-el, .amp-text.s1-el', {y:20, opacity:0, duration:0.6, stagger:0.15, ease:'power2.out'}, '-=0.3')
+        .from('.diya-row.s1-el', {scale:0.7, opacity:0, duration:0.6, ease:'back.out(2)'}, '-=0.2');
+      animMandala();
+      break;
+    }
+    default: {
+      if(els.length){
+        gsap.from(els, {y:40, opacity:0, duration:0.75, stagger:0.1, ease:'power3.out'});
+      }
+      // card shimmer
+      const card = slide.querySelector('.card');
+      if(card){
+        gsap.fromTo(card, {boxShadow:'0 0 0px rgba(212,160,23,0)'}, {
+          boxShadow:'0 0 30px rgba(212,160,23,0.15)', duration:1.5, ease:'power1.inOut'
+        });
+        gsap.from(card, {rotateX:4, transformPerspective:800, duration:0.9, ease:'power2.out'});
       }
     }
-  }, { passive: true });
+  }
+}
 
-  // Keyboard
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
-      e.preventDefault();
-      clearTimeout(timer);
-      goToSlide((currentIndex + 1) % slides.length);
-      scheduleNext();
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-      e.preventDefault();
-      clearTimeout(timer);
-      goToSlide(Math.max(currentIndex - 1, 0));
-      scheduleNext();
-    } else if (e.key === 'p') {
-      togglePlay();
+// ===== TRANSITION =====
+function goTo(idx, dir){
+  if(isAnimating || idx === current) return;
+  isAnimating = true;
+  clearTimeout(autoTimer);
+
+  const fromSlide = slides[current];
+  const toSlide = slides[idx];
+  const direction = (dir === undefined) ? (idx > current ? 1 : -1) : dir;
+
+  // exit current
+  gsap.to(fromSlide, {
+    y: direction * -60,
+    scale: 0.93,
+    opacity: 0,
+    filter: 'blur(6px)',
+    duration: 0.55,
+    ease: 'power2.in',
+    onComplete: () => {
+      fromSlide.classList.remove('active');
+      gsap.set(fromSlide, {opacity:0, y:0, scale:1, filter:'blur(0px)'});
     }
   });
 
-  // Start auto-play
-  scheduleNext();
+  // prepare incoming
+  gsap.set(toSlide, {opacity:0, y: direction * 80, scale:0.96, filter:'blur(4px)'});
+  toSlide.classList.add('active');
+
+  gsap.to(toSlide, {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    duration: 0.65,
+    ease: 'power2.out',
+    delay: 0.25,
+    onComplete: () => {
+      isAnimating = false;
+      current = idx;
+      updateDots(current);
+      // nav hint fade out after first interaction
+      if(current > 0) gsap.to(navHint, {opacity:0, duration:0.5});
+      animateSlideIn(current);
+      startParticles(SLIDE_PARTICLE_TYPE[current]);
+      scheduleAuto();
+    }
+  });
+}
+
+function next(){ if(current < TOTAL - 1) goTo(current + 1, 1); }
+function prev(){ if(current > 0) goTo(current - 1, -1); }
+
+function scheduleAuto(){
+  clearTimeout(autoTimer);
+  if(current < TOTAL - 1){
+    autoTimer = setTimeout(next, DURATIONS[current]);
+  }
+}
+
+// ===== TOUCH / SWIPE =====
+let touchStartY = 0, touchStartX = 0;
+app.addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+  touchStartX = e.touches[0].clientX;
+}, {passive:true});
+app.addEventListener('touchend', e => {
+  const dy = touchStartY - e.changedTouches[0].clientY;
+  const dx = touchStartX - e.changedTouches[0].clientX;
+  if(Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 40){
+    dy > 0 ? next() : prev();
+  }
+}, {passive:true});
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowDown' || e.key === 'ArrowRight') next();
+  if(e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  prev();
+});
+
+// ===== SOUND TOGGLE =====
+let audioCtx = null;
+soundBtn.addEventListener('click', () => {
+  soundOn = !soundOn;
+  document.getElementById('soundIcon').innerHTML = soundOn
+    ? '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>'
+    : '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>';
+  gsap.fromTo(soundBtn, {scale:1.3},{scale:1, duration:0.3, ease:'back.out(2)'});
+
+  if(soundOn && !audioCtx){
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      playAmbient();
+    } catch(e){}
+  } else if(audioCtx){
+    audioCtx.state === 'suspended' ? audioCtx.resume() : audioCtx.suspend();
+  }
+});
+
+function playAmbient(){
+  if(!audioCtx) return;
+  // Simple harmonious tones to simulate shehnai/bells ambience
+  const freqs = [261.6, 329.6, 392.0, 523.2];
+  freqs.forEach((f, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.frequency.value = f;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 1 + i * 0.5);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+  });
+}
+
+// ===== INIT =====
+function init(){
+  // show first slide
+  gsap.set(slides[0], {opacity:0, y:0, scale:1});
+  slides[0].classList.add('active');
+
+  gsap.to(slides[0], {
+    opacity:1, duration:1.2, ease:'power2.out',
+    onComplete: () => {
+      animateSlideIn(0);
+      startParticles('gold');
+      scheduleAuto();
+    }
+  });
+
+  // nav hint pulse
+  gsap.to(navHint, {opacity:0.7, duration:1, repeat:3, yoyo:true, delay:3});
+}
+
+// Wait for GSAP
+if(typeof gsap !== 'undefined'){
+  init();
+} else {
+  window.addEventListener('load', init);
+}
 
 })();
 </script>
-
 </body>
 </html>
