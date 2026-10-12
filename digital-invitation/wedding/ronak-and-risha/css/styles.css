@@ -200,12 +200,35 @@ body {
   pointer-events: none;
 }
 
+.language-gate__deities {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  max-height: 100vh;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.language-gate__deities--left {
+  left: 0;
+}
+
+.language-gate__deities--right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
 .language-gate__content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
   padding: var(--space-md);
+  position: relative;
+  z-index: 1;
 }
 
 .language-gate__invocation {

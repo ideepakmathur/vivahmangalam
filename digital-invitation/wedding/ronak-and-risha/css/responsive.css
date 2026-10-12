@@ -152,6 +152,11 @@
     font-size: 1.5rem;
   }
 
+  .language-gate__deities {
+    height: 40%;
+    opacity: 0.3;
+  }
+
   .language-gate__cards {
     flex-direction: column;
     gap: 1rem;
