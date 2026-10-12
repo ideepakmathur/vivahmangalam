@@ -1,0 +1,87 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "meta": {
+    "title": "Ronak & Risha — Wedding Invitation",
+    "description": "You are cordially invited to the wedding of Ronak and Risha"
+  },
+  "splash": {
+    "invocation": "|| Shree Ganeshaya Namah ||",
+    "pullRibbon": "Pull the ribbon",
+    "shubhVivah": "|| Auspicious Wedding ||",
+    "names": "Ronak & Devansha"
+  },
+  "roka": {
+    "title": "|| Roka Ceremony ||",
+    "date": "August 15, 2026",
+    "viewMore": "View More Photos"
+  },
+  "engagement": {
+    "title": "|| Engagement Ceremony ||",
+    "date": "September 5, 2026",
+    "viewMore": "View More Photos"
+  },
+  "brahman": {
+    "title": "|| Auspicious Moment ||",
+    "caption": "Both families are discussing the auspicious date with the priest..."
+  },
+  "patrika": {
+    "title": "|| Wedding Schedule ||",
+    "events": [
+      {"name": "Ganesh Sthapna", "date": "November 15, 2026", "time": ""},
+      {"name": "Tel / Haldi", "date": "November 16, 2026", "time": ""},
+      {"name": "Mata Poojan", "date": "November 17, 2026", "time": ""},
+      {"name": "Garba / Sangeet", "date": "November 18, 2026", "time": ""},
+      {"name": "Baraat Departure", "date": "November 20, 2026", "time": ""},
+      {"name": "Khet Lagun", "date": "November 21, 2026", "time": "Morning 11:30 AM to 2:00 PM"},
+      {"name": "Baraat", "date": "November 21, 2026", "time": "Evening 9:00 PM to 10:00 PM"},
+      {"name": "Reception", "date": "November 29, 2026", "time": "Evening 7:30 PM"}
+    ]
+  },
+  "venue": {
+    "title": "|| Wedding Venue ||",
+    "name": "[Venue Name]",
+    "address": "[Address Here]",
+    "mapPlaceholder": "Map will appear here",
+    "directions": "Get Directions"
+  },
+  "family": {
+    "title": "|| With Best Wishes ||",
+    "groomSide": "Groom's Family",
+    "brideSide": "Bride's Family",
+    "relations": {
+      "father": "Father",
+      "mother": "Mother",
+      "grandfather": "Grandfather",
+      "grandmother": "Grandmother",
+      "uncle": "Uncle"
+    },
+    "kids": "Little Guests",
+    "blessing": "May all beings be happy, may all be free from illness"
+  },
+  "contact": {
+    "title": "If you are unable to attend this auspicious wedding ceremony, please leave your contact details — we will share digital photos with you",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message (optional)",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "success": "Thank you! Your message has been sent.",
+    "error": "Something went wrong. Please try again."
+  },
+  "modal": {
+    "title": "Request Photos",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "submit": "Submit"
+  },
+  "viewToggle": {
+    "card": "Card View",
+    "story": "Story View"
+  },
+  "footer": {
+    "text": "|| May All Be Auspicious ||"
+  }
+}

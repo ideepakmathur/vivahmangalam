@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>रोनक &amp; देवांशा — शुभ विवाह</title>
+  <meta name="description" content="रोनक और देवांशा के शुभ विवाह का निमंत्रण पत्र">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/decorations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===================== SECTION 0: Language Gate ===================== -->
+  <div id="language-gate" class="language-gate" role="dialog" aria-label="भाषा चुनें">
+    <div class="garland-border garland-border--top"></div>
+    <div class="language-gate__content">
+      <p class="language-gate__invocation yatra-one" data-i18n="splash.invocation">|| श्री गणेशाय नमः ||</p>
+      <div class="language-gate__cards">
+        <button class="language-card language-card--active" id="btn-hindi" aria-label="हिंदी में देखें">
+          <span class="language-card__label">हिंदी</span>
+        </button>
+        <button class="language-card" id="btn-english" aria-label="View in English">
+          <span class="language-card__label">English</span>
+        </button>
+        <div class="language-card language-card--disabled" aria-disabled="true">
+          <span class="language-card__label">ગુજરાતી</span>
+          <span class="language-card__badge">जल्द आ रहा है</span>
+        </div>
+      </div>
+    </div>
+    <div class="garland-border garland-border--bottom"></div>
+  </div>
+
+  <!-- ===================== Main Content (hidden until language selected) ===================== -->
+  <main id="main-content" class="main-content" aria-hidden="true">
+
+    <!-- View Toggle (floating) -->
+    <button id="view-toggle" class="view-toggle" aria-label="दृश्य बदलें" data-i18n="viewToggle.card">कार्ड दृश्य</button>
+
+    <!-- ===================== SECTION 1: Splash / Ribbon Pull ===================== -->
+    <section id="splash" class="section section--splash" data-section="splash" aria-label="शुभ विवाह निमंत्रण">
+      <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
+      <div class="splash__content">
+        <p class="splash__invocation yatra-one" data-i18n="splash.invocation">|| श्री गणेशाय नमः ||</p>
+
+        <div class="splash__stage">
+          <div class="splash__silhouette splash__silhouette--bride" aria-label="वधू">
+            <div class="silhouette silhouette--bride"></div>
+          </div>
+
+          <div class="splash__ribbon-area">
+            <div class="ribbon" id="ribbon" role="button" tabindex="0" aria-label="रिबन खींचें">
+              <div class="ribbon__cord"></div>
+              <p class="ribbon__instruction" data-i18n="splash.pullRibbon">रिबन खींचें</p>
+            </div>
+          </div>
+
+          <div class="splash__silhouette splash__silhouette--groom" aria-label="वर">
+            <div class="silhouette silhouette--groom"></div>
+          </div>
+        </div>
+
+        <div class="splash__reveal" id="splash-reveal" aria-hidden="true">
+          <p class="splash__title yatra-one" data-i18n="splash.shubhVivah">|| शुभ विवाह ||</p>
+          <p class="splash__names tiro-devanagari" data-i18n="splash.names">रोनक &amp; देवांशा</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 2: Roka ===================== -->
+    <section id="roka" class="section section--roka section--past-event" data-section="roka" aria-label="रोका समारोह">
+      <div class="section__container">
+        <h2 class="section__heading yatra-one" data-i18n="roka.title">|| रोका समारोह ||</h2>
+        <p class="section__date tiro-devanagari" data-i18n="roka.date">15 अगस्त 2026</p>
+
+        <div class="kalash-divider" aria-hidden="true">
+          <span class="kalash-divider__symbol">&#x2723;</span>
+        </div>
+
+        <div class="photo-grid" aria-label="रोका तस्वीरें">
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 1">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 2">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 3">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 4">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+        </div>
+
+        <button class="btn btn--gold photo-request-btn" data-event="roka" aria-label="और तस्वीरें देखें" data-i18n="roka.viewMore">
+          और तस्वीरें देखें
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 3: Engagement ===================== -->
+    <section id="engagement" class="section section--engagement section--past-event" data-section="engagement" aria-label="सगाई समारोह">
+      <div class="section__container">
+        <h2 class="section__heading yatra-one" data-i18n="engagement.title">|| सगाई समारोह ||</h2>
+        <p class="section__date tiro-devanagari" data-i18n="engagement.date">5 सितम्बर 2026</p>
+
+        <div class="kalash-divider" aria-hidden="true">
+          <span class="kalash-divider__symbol">&#x2723;</span>
+        </div>
+
+        <div class="photo-grid" aria-label="सगाई तस्वीरें">
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 1">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 2">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 3">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+          <div class="photo-grid__item photo-placeholder" aria-label="फ़ोटो 4">
+            <span class="photo-placeholder__text">फ़ोटो</span>
+          </div>
+        </div>
+
+        <button class="btn btn--gold photo-request-btn" data-event="engagement" aria-label="और तस्वीरें देखें" data-i18n="engagement.viewMore">
+          और तस्वीरें देखें
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 4: Brahman Animation ===================== -->
+    <section id="brahman" class="section section--brahman section--past-event" data-section="brahman" aria-label="शुभ मुहूर्त">
+      <div class="section__container">
+        <h2 class="section__heading yatra-one" data-i18n="brahman.title">|| शुभ मुहूर्त ||</h2>
+
+        <div class="brahman__stage">
+          <div class="brahman__group brahman__group--left" aria-label="वर पक्ष परिवार">
+            <div class="silhouette-group silhouette-group--family1"></div>
+          </div>
+
+          <div class="brahman__pandit" aria-label="पंडितजी">
+            <div class="silhouette silhouette--pandit"></div>
+            <div class="patrika-scroll" aria-label="पत्रिका"></div>
+          </div>
+
+          <div class="brahman__group brahman__group--right" aria-label="वधू पक्ष परिवार">
+            <div class="silhouette-group silhouette-group--family2"></div>
+          </div>
+        </div>
+
+        <p class="brahman__caption tiro-devanagari" data-i18n="brahman.caption">दोनों परिवार शुभ मुहूर्त की चर्चा कर रहे हैं...</p>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 5: Patrika / Event Timeline ===================== -->
+    <section id="patrika" class="section section--patrika" data-section="patrika" aria-label="शुभ लग्न पत्रिका">
+      <div class="patrika-card">
+        <div class="patrika-card__corner patrika-card__corner--tl" aria-hidden="true"></div>
+        <div class="patrika-card__corner patrika-card__corner--tr" aria-hidden="true"></div>
+        <div class="patrika-card__corner patrika-card__corner--bl" aria-hidden="true"></div>
+        <div class="patrika-card__corner patrika-card__corner--br" aria-hidden="true"></div>
+
+        <h2 class="patrika-card__heading yatra-one" data-i18n="patrika.title">|| शुभ लग्न पत्रिका ||</h2>
+
+        <div class="timeline">
+          <div class="timeline__event" data-event="ganesh-sthapana" data-event-index="0">
+            <span class="timeline__icon" aria-hidden="true">&#x2740;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.0.name">गणेश स्थापना</span>
+              <span class="timeline__date" data-i18n="patrika.events.0.date">15 नवम्बर 2026</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="tel-haldi" data-event-index="1">
+            <span class="timeline__icon" aria-hidden="true">&#x2618;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.1.name">तेल / हल्दी</span>
+              <span class="timeline__date" data-i18n="patrika.events.1.date">16 नवम्बर 2026</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="mata-pujan" data-event-index="2">
+            <span class="timeline__icon" aria-hidden="true">&#x2727;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.2.name">माता पूजन</span>
+              <span class="timeline__date" data-i18n="patrika.events.2.date">17 नवम्बर 2026</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="garba-sangeet" data-event-index="3">
+            <span class="timeline__icon" aria-hidden="true">&#x266B;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.3.name">गरबा / संगीत</span>
+              <span class="timeline__date" data-i18n="patrika.events.3.date">18 नवम्बर 2026</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="barat-prasthan" data-event-index="4">
+            <span class="timeline__icon" aria-hidden="true">&#x2708;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.4.name">बारात प्रस्थान</span>
+              <span class="timeline__date" data-i18n="patrika.events.4.date">20 नवम्बर 2026</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="khet-lagun" data-event-index="5">
+            <span class="timeline__icon" aria-hidden="true">&#x2740;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.5.name">खेत लगुन</span>
+              <span class="timeline__date" data-i18n="patrika.events.5.date">21 नवम्बर 2026, सुबह 11:30 AM से 2:00 PM</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="barat" data-event-index="6">
+            <span class="timeline__icon" aria-hidden="true">&#x2605;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.6.name">बारात</span>
+              <span class="timeline__date" data-i18n="patrika.events.6.date">21 नवम्बर 2026, शाम 9:00 PM से 10:00 PM</span>
+            </div>
+          </div>
+
+          <div class="timeline__event" data-event="reception" data-event-index="7">
+            <span class="timeline__icon" aria-hidden="true">&#x2726;</span>
+            <div class="timeline__details">
+              <span class="timeline__name" data-i18n="patrika.events.7.name">रिसेप्शन</span>
+              <span class="timeline__date" data-i18n="patrika.events.7.date">29 नवम्बर 2026, शाम 7:30 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 6: Venue ===================== -->
+    <section id="venue" class="section section--venue" data-section="venue" aria-label="विवाह स्थल">
+      <div class="section__container">
+        <h2 class="section__heading yatra-one" data-i18n="venue.title">|| विवाह स्थल ||</h2>
+
+        <div class="venue-card">
+          <h3 class="venue-card__name tiro-devanagari" data-i18n="venue.name">[विवाह स्थल का नाम]</h3>
+          <p class="venue-card__address" data-i18n="venue.address">[पता यहाँ लिखें]</p>
+
+          <div class="venue-card__map" data-i18n-aria="venue.mapPlaceholder" aria-label="मानचित्र यहाँ आएगा">
+            <!-- Google Maps iframe placeholder -->
+          </div>
+
+          <a href="#" class="btn btn--gold venue-card__directions" data-i18n="venue.directions" aria-label="दिशा-निर्देश प्राप्त करें">
+            दिशा-निर्देश प्राप्त करें
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 7: Darshanabhilashi ===================== -->
+    <section id="family" class="section section--family" data-section="family" aria-label="दर्शनाभिलाषी">
+      <div class="section__container">
+        <h2 class="section__heading yatra-one" data-i18n="family.title">|| दर्शनाभिलाषी ||</h2>
+
+        <div class="family-frame">
+          <div class="family-frame__columns">
+            <div class="family-frame__side family-frame__side--groom">
+              <h3 class="family-frame__side-title tiro-devanagari" data-i18n="family.groomSide">वर पक्ष</h3>
+              <ul class="family-list">
+                <li class="family-list__item"><span class="family-list__relation">पितश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">मातश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">दादाश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">दादीश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">ताऊजी/चाचाजी:</span> [नाम]</li>
+              </ul>
+            </div>
+
+            <div class="family-frame__divider" aria-hidden="true"></div>
+
+            <div class="family-frame__side family-frame__side--bride">
+              <h3 class="family-frame__side-title tiro-devanagari" data-i18n="family.brideSide">वधू पक्ष</h3>
+              <ul class="family-list">
+                <li class="family-list__item"><span class="family-list__relation">पितश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">मातश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">दादाश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">दादीश्री:</span> [नाम]</li>
+                <li class="family-list__item"><span class="family-list__relation">ताऊजी/चाचाजी:</span> [नाम]</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="family-frame__kids">
+            <p>छोटे मेहमान: [नाम], [नाम], [नाम]</p>
+          </div>
+
+          <div class="family-frame__blessing">
+            <p class="blessing tiro-devanagari" data-i18n="family.blessing">सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 8: Contact Form ===================== -->
+    <section id="contact" class="section section--contact" data-section="contact" aria-label="संपर्क विवरण">
+      <div class="section__container">
+        <p class="contact__intro tiro-devanagari" data-i18n="contact.title">
+          यदि आप इस शुभ विवाह संस्कार में उपस्थित नहीं हो पाते, तो कृपया अपना संपर्क विवरण दें — हम आपको डिजिटल फ़ोटो भेजेंगे
+        </p>
+
+        <form id="contact-form" class="contact-form" action="[GOOGLE_APPS_SCRIPT_URL]" method="POST">
+          <div class="form-group">
+            <label for="contact-name" class="form-label" data-i18n="contact.name">नाम</label>
+            <input type="text" id="contact-name" name="name" class="form-input" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email" class="form-label" data-i18n="contact.email">ईमेल</label>
+            <input type="email" id="contact-email" name="email" class="form-input" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-phone" class="form-label" data-i18n="contact.phone">फ़ोन</label>
+            <input type="tel" id="contact-phone" name="phone" class="form-input" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message" class="form-label" data-i18n="contact.message">संदेश (वैकल्पिक)</label>
+            <textarea id="contact-message" name="message" class="form-input form-textarea" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary" data-i18n="contact.submit">भेजें</button>
+
+          <div id="contact-success" class="form-success" aria-live="polite" hidden>
+            <p data-i18n="contact.success">आपका संदेश सफलतापूर्वक भेजा गया। धन्यवाद!</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== Footer ===================== -->
+    <footer class="site-footer" aria-label="पाद लेख">
+      <p class="site-footer__blessing yatra-one" data-i18n="footer.text">|| शुभम् भवतु ||</p>
+      <p class="site-footer__credit">सप्रेम निमंत्रण</p>
+    </footer>
+
+  </main>
+
+  <!-- ===================== Photo Request Modal ===================== -->
+  <div id="photo-request-modal" class="modal" role="dialog" aria-label="तस्वीरें प्राप्त करें" aria-hidden="true">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close" id="modal-close" aria-label="बंद करें">&times;</button>
+      <h3 class="modal__heading yatra-one" data-i18n="modal.title">तस्वीरें प्राप्त करें</h3>
+
+      <form id="photo-request-form" class="contact-form" action="[GOOGLE_APPS_SCRIPT_URL]" method="POST">
+        <input type="hidden" id="photo-event" name="event" value="">
+
+        <div class="form-group">
+          <label for="photo-name" class="form-label" data-i18n="modal.name">नाम</label>
+          <input type="text" id="photo-name" name="name" class="form-input" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+          <label for="photo-email" class="form-label" data-i18n="modal.email">ईमेल</label>
+          <input type="email" id="photo-email" name="email" class="form-input" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+          <label for="photo-phone" class="form-label" data-i18n="modal.phone">फ़ोन</label>
+          <input type="tel" id="photo-phone" name="phone" class="form-input" required aria-required="true">
+        </div>
+
+        <button type="submit" class="btn btn--primary" data-i18n="modal.submit">भेजें</button>
+
+        <div id="photo-request-success" class="form-success" aria-live="polite" hidden>
+          <p>आपका अनुरोध सफलतापूर्वक भेजा गया। धन्यवाद!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/language.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/ribbon.js" defer></script>
+  <script src="js/timeline.js" defer></script>
+  <script src="js/patrika.js" defer></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/particles.js" defer></script>
+</body>
+</html>

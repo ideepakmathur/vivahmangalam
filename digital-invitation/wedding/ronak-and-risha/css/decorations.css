@@ -1,0 +1,470 @@
+/* ==========================================================================
+   Ronak & Devansha Vivah - Decorations
+   Pure CSS decorative motifs, borders, and ornamental elements
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Marigold Garland Borders
+   Scalloped pattern in saffron/gold along edges
+   -------------------------------------------------------------------------- */
+.marigold-border-top {
+  position: relative;
+}
+
+.marigold-border-top::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 5px,
+    #FF6600 5px,
+    #FF6600 10px,
+    transparent 10px,
+    transparent 15px,
+    #D4A017 15px,
+    #D4A017 20px
+  );
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20'%3E%3Ccircle cx='10' cy='15' r='10' fill='black'/%3E%3Ccircle cx='30' cy='15' r='10' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20'%3E%3Ccircle cx='10' cy='15' r='10' fill='black'/%3E%3Ccircle cx='30' cy='15' r='10' fill='black'/%3E%3C/svg%3E");
+  mask-size: 40px 20px;
+  -webkit-mask-size: 40px 20px;
+  mask-repeat: repeat-x;
+  -webkit-mask-repeat: repeat-x;
+  background: linear-gradient(90deg, #FF6600, #D4A017, #FF6600, #D4A017);
+}
+
+.marigold-border-bottom {
+  position: relative;
+}
+
+.marigold-border-bottom::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #D4A017, #FF6600, #D4A017, #FF6600);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20'%3E%3Ccircle cx='10' cy='5' r='10' fill='black'/%3E%3Ccircle cx='30' cy='5' r='10' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20'%3E%3Ccircle cx='10' cy='5' r='10' fill='black'/%3E%3Ccircle cx='30' cy='5' r='10' fill='black'/%3E%3C/svg%3E");
+  mask-size: 40px 20px;
+  -webkit-mask-size: 40px 20px;
+  mask-repeat: repeat-x;
+  -webkit-mask-repeat: repeat-x;
+}
+
+/* --------------------------------------------------------------------------
+   Paisley Corner Decorations
+   Curl shapes at section corners using border-radius
+   -------------------------------------------------------------------------- */
+.paisley-corner {
+  position: relative;
+}
+
+.paisley-corner::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #D4A017;
+  border-radius: 50% 0 50% 50%;
+  border-top-color: transparent;
+  transform: rotate(-45deg);
+  opacity: 0.7;
+}
+
+.paisley-corner::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #D4A017;
+  border-radius: 0 50% 50% 50%;
+  border-top-color: transparent;
+  transform: rotate(45deg);
+  opacity: 0.7;
+}
+
+/* Bottom paisley corners -- apply to a child or wrapper element */
+.paisley-corner-bottom {
+  position: relative;
+}
+
+.paisley-corner-bottom::before {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #D4A017;
+  border-radius: 50% 50% 0 50%;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
+  opacity: 0.7;
+}
+
+.paisley-corner-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #D4A017;
+  border-radius: 50% 50% 50% 0;
+  border-bottom-color: transparent;
+  transform: rotate(-45deg);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   Kalash Divider
+   Centered pot shape with extending horizontal lines
+   -------------------------------------------------------------------------- */
+.kalash-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.kalash-divider::before,
+.kalash-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #D4A017 20%,
+    #D4A017 80%,
+    transparent
+  );
+}
+
+.kalash-divider__pot {
+  position: relative;
+  width: 40px;
+  height: 50px;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Coconut on top */
+.kalash-divider__pot::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #D4A017;
+  margin-bottom: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pot opening / rim */
+.kalash-divider__pot::after {
+  content: "";
+  width: 30px;
+  height: 6px;
+  background-color: #D4A017;
+  border-radius: 2px;
+}
+
+/* Pot body -- use the element itself */
+.kalash-divider__body {
+  width: 24px;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 28px solid #D4A017;
+  border-radius: 0 0 4px 4px;
+  margin-top: -1px;
+}
+
+/* --------------------------------------------------------------------------
+   Toran / Bandanwar Border
+   Triangular hanging pattern in alternating red and gold
+   -------------------------------------------------------------------------- */
+.toran-border {
+  position: relative;
+  padding-top: 24px;
+}
+
+.toran-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background:
+    linear-gradient(135deg, #C41E3A 33.33%, transparent 33.33%) 0 0,
+    linear-gradient(225deg, #C41E3A 33.33%, transparent 33.33%) 0 0,
+    linear-gradient(135deg, #D4A017 33.33%, transparent 33.33%) 24px 0,
+    linear-gradient(225deg, #D4A017 33.33%, transparent 33.33%) 24px 0;
+  background-size: 48px 24px;
+  background-repeat: repeat-x;
+}
+
+/* --------------------------------------------------------------------------
+   Lotus Icon
+   Overlapping ellipses forming a stylized lotus
+   -------------------------------------------------------------------------- */
+.lotus-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+
+.lotus-icon::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 16px;
+  background-color: #C41E3A;
+  border-radius: 50%;
+  top: 2px;
+  left: 1px;
+  transform: rotate(-30deg);
+  opacity: 0.8;
+}
+
+.lotus-icon::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 16px;
+  background-color: #C41E3A;
+  border-radius: 50%;
+  top: 2px;
+  right: 1px;
+  transform: rotate(30deg);
+  opacity: 0.8;
+}
+
+/* Center petal -- use a nested span or the element background */
+.lotus-icon-center {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  background-color: #e0365a;
+  border-radius: 50%;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Diya (Lamp) Icon
+   Oval base with teardrop flame
+   -------------------------------------------------------------------------- */
+.diya-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 24px;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+
+/* Base / bowl */
+.diya-icon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  width: 16px;
+  height: 8px;
+  background-color: #D4A017;
+  border-radius: 0 0 50% 50%;
+}
+
+/* Flame */
+.diya-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 12px;
+  background: linear-gradient(to top, #FF6600, #FFD700);
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  /* teardrop shape */
+  clip-path: ellipse(40% 50% at 50% 50%);
+}
+
+/* --------------------------------------------------------------------------
+   Rangoli Background Pattern
+   Subtle concentric decorative circles at very low opacity
+   -------------------------------------------------------------------------- */
+.rangoli-bg {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(212, 160, 23, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(212, 160, 23, 0.03) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(196, 30, 58, 0.02) 0%, transparent 25%),
+    radial-gradient(circle at 25% 25%, rgba(212, 160, 23, 0.03) 0%, transparent 30%),
+    radial-gradient(circle at 75% 75%, rgba(212, 160, 23, 0.03) 0%, transparent 30%);
+}
+
+/* --------------------------------------------------------------------------
+   Ornate Frame
+   Double border with paisley corners
+   -------------------------------------------------------------------------- */
+.ornate-frame {
+  border: 2px solid #D4A017;
+  outline: 1px dashed #D4A017;
+  outline-offset: 4px;
+  padding: 2rem;
+  position: relative;
+  border-radius: 8px;
+}
+
+/* Paisley at top-left corner */
+.ornate-frame::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #D4A017;
+  border-radius: 50% 0 50% 50%;
+  border-top-color: transparent;
+  transform: rotate(-45deg);
+  background-color: #FFF8F0;
+}
+
+/* Paisley at bottom-right corner */
+.ornate-frame::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #D4A017;
+  border-radius: 50% 50% 0 50%;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
+  background-color: #FFF8F0;
+}
+
+/* --------------------------------------------------------------------------
+   Om Symbol (Decorative)
+   -------------------------------------------------------------------------- */
+.om-symbol::before {
+  content: "\0950";
+  font-family: 'Yatra One', cursive;
+  color: #D4A017;
+  font-size: 1.5rem;
+  display: inline-block;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+}
+
+/* Centered om divider */
+.om-divider {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.om-divider::before {
+  content: "\0950";
+  font-family: 'Yatra One', cursive;
+  color: #D4A017;
+  font-size: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Swastik Symbol (Auspicious Hindu Symbol)
+   -------------------------------------------------------------------------- */
+.swastik-symbol::before {
+  content: "\5350";
+  color: #D4A017;
+  font-size: 1.2rem;
+  display: inline-block;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+}
+
+/* Centered swastik divider */
+.swastik-divider {
+  text-align: center;
+  margin: 1rem 0;
+  letter-spacing: 0.5rem;
+}
+
+.swastik-divider::before {
+  content: "\5350";
+  color: #D4A017;
+  font-size: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Combined Decorative Divider (Om + Lines)
+   -------------------------------------------------------------------------- */
+.decorative-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 0;
+}
+
+.decorative-divider::before,
+.decorative-divider::after {
+  content: "";
+  flex: 1;
+  max-width: 150px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #D4A017, transparent);
+}
+
+.decorative-divider__symbol {
+  font-family: 'Yatra One', cursive;
+  color: #D4A017;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Mango Leaf Pattern (for headers/footers)
+   -------------------------------------------------------------------------- */
+.mango-leaf-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 1rem 0;
+}
+
+.mango-leaf {
+  width: 8px;
+  height: 18px;
+  background-color: #2E7D32;
+  border-radius: 0 50% 50% 0;
+  transform-origin: bottom center;
+  opacity: 0.7;
+}
+
+.mango-leaf:nth-child(odd) {
+  transform: rotate(-15deg);
+}
+
+.mango-leaf:nth-child(even) {
+  transform: rotate(15deg);
+}
